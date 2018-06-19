@@ -1,0 +1,3 @@
+Projecto1: Desenvolvimento de um programa para gestão e monitorização de um fórum de mensagens. A interacção com o programa ocorre através de um conjunto de linhas compostas por uma letra (comando) e dos seus argumentos.
+Projecto2: Desenvolvimento de um programa que permite registar as entradas e saídas de produtos num armazém. Cada produto possui um código identificativo e o número de unidades. O programa recebe como input um conjunto de linhas que começam com um caracter específico e que indica as operações a executar.
+(Linguagem usada: C)
