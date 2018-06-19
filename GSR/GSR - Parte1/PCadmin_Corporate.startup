@@ -1,0 +1,12 @@
+### MRTG Setup ###
+mkdir /var/www/mrtg
+env LANG=C /usr/bin/mrtg /mrtgCentral.cfg --daemon
+env LANG=C /usr/bin/mrtg /mrtgSCADA.cfg --daemon
+env LANG=C /usr/bin/mrtg /mrtgSub1.cfg --daemon
+env LANG=C /usr/bin/mrtg /mrtgSub2.cfg --daemon
+env LANG=C /usr/bin/mrtg /mrtgWWW.cfg --daemon
+indexmaker --output=/var/www/index.html mrtgCentral.cfg mrtgSCADA.cfg mrtgSub1.cfg mrtgSub2.cfg mrtgWWW.cfg
+/etc/init.d/apache2 start
+
+### DHCP Client Start Listenning ###
+/etc/init.d/networking start 

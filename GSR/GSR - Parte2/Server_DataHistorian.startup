@@ -1,0 +1,4 @@
+### IP Address & Routing Config ###
+ip addr add dev eth0 10.20.68.2/23
+ip link set dev eth0 up
+ip route add default via 10.20.68.1

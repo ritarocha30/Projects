@@ -1,0 +1,7 @@
+### IP Address & Routing Config ###
+ip addr add dev eth0 30.40.2.4/23
+ip link set dev eth0 up
+ip route add default via 30.40.2.1
+
+### DNS Server Initialization ###
+/etc/init.d/bind start

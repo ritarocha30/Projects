@@ -1,0 +1,20 @@
+### IP Address & Routing Config ###
+ip addr add dev eth0 10.20.70.3/23
+ip link set dev eth0 up 
+ip route add default via 10.20.70.1
+
+### SNMP Initialization ###
+/etc/init.d/snmpd start
+
+### Web Server (Apache2) Setup ###
+a2enmod userdir
+/etc/init.d/apache2 start
+
+### SSH Configuration ###
+/etc/init.d/ssh start
+echo -e "admin\nadmin\n\n\n\n\n\ny\n" | adduser admin
+chown -R admin /home/admin
+chown -R admin /home/admin/.ssh
+chmod 700 /home/admin
+chmod 700 /home/admin/.ssh/
+chmod 600 /home/admin/.ssh/authorized_keys

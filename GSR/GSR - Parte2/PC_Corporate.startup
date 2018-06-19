@@ -1,0 +1,6 @@
+### DHCP Client Start Listenning ###
+/etc/init.d/networking start 
+
+### SSH Configuration ###
+/etc/init.d/ssh start
+chmod 600 /root/.ssh/id_rsa

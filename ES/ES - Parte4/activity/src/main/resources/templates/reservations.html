@@ -1,0 +1,47 @@
+<!--!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Account</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet"
+	th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}" />
+<script th:src="@{/webjars/jquery/3.1.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+</head>
+<body>
+	<div class="container">
+		<h2>
+			Reservation of Offer <span th:text="${offer.id}">Xtreme</span> of Provider
+			<span th:text="${activity.nameProvider}">BigProvider</span>
+		</h2>
+		<a class="btn btn-default pull-right"
+			th:href="@{/providers/{codeProvider}/activities/{codeActivity}/offers(codeProvider=${provider.code},codeActivity=${activity.code})}">Offer</a>
+		<br />
+		<h3>Book</h3>
+		<p class="text-danger" th:text="${error}">Error</p>
+		<form class="form-inline"
+			th:action="@{/providers/{codeProvider}/activities/{codeActivity}/offers/reservations(codeProvider=${provider.code},codeActivity=${activity.code})}"
+			method="post">
+			<input class="btn btn-primary" type="submit" value="Book" />
+		</form>
+		
+		<h3>Reservations</h3>
+ 		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Reference</th>
+ 					<th>Cancellation</th>
+ 					<th>Cancellation Date</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="reservation: ${offer.reservations}">
+				<td><strong>Reference:</strong><span th:text="${reservation.reference}"></span>, 
+				 	<strong>Cancellation:</strong><span th:text="${reservation.cancellation}"></span>, 
+				 	<strong>Cancellation Date:</strong><span th:text="${reservation.cancellationDate}"></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html-->

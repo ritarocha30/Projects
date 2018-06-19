@@ -1,0 +1,96 @@
+### IP Address & Routing Config ###
+ip addr add dev eth0 169.254.1.1/16
+ip link set dev eth0 up
+ip addr add dev eth1 10.20.64.1/23
+ip link set dev eth1 up
+ip addr add dev eth2 10.20.66.1/23
+ip link set dev eth2 up
+ip addr add dev eth3 10.20.68.1/23
+ip link set dev eth3 up
+ip addr add dev eth4 10.20.70.1/23
+ip link set dev eth4 up
+ip route add 30.40.0.0/21 via 169.254.1.2
+ip route add 10.20.67.0/24 via 10.20.66.2
+
+### DCHP Server Initialization ###
+/etc/init.d/dhcp3-server start
+
+### SNMP Initialization ###
+/etc/init.d/snmpd start
+
+### Firewall Rules ###
+/etc/init.d/apache2 start
+
+#Altera a policy do FORWARD para DROP
+iptables -P FORWARD DROP
+
+#Permissão do serviço WWW para a Internet
+iptables -A FORWARD -s 30.40.0.0/22 -d 10.20.70.3 -p tcp --dport 80 -j ACCEPT
+iptables -A FORWARD -d 30.40.0.0/22 -s 10.20.70.3 -p tcp --sport 80 -j ACCEPT
+
+#Permissão do serviço DNS para a Internet e do ping (para testar)
+iptables -A FORWARD -s 30.40.0.0/22 -d 10.20.70.2 -p tcp --dport 53 -j ACCEPT
+iptables -A FORWARD -d 30.40.0.0/22 -s 10.20.70.2 -p tcp --sport 53 -j ACCEPT
+iptables -A FORWARD -s 30.40.0.0/22 -d 10.20.70.2 -p udp --dport 53 -j ACCEPT
+iptables -A FORWARD -d 30.40.0.0/22 -s 10.20.70.2 -p udp --sport 53 -j ACCEPT
+iptables -A FORWARD -s 30.40.0.0/22 -d 10.20.70.2 -p icmp --icmp-type 8 -j ACCEPT
+iptables -A FORWARD -d 30.40.0.0/22 -s 10.20.70.2 -p icmp --icmp-type 0 -j ACCEPT
+iptables -A FORWARD -d 30.40.0.0/22 -s 10.20.70.2 -p icmp --icmp-type 8 -j ACCEPT
+iptables -A FORWARD -s 30.40.0.0/22 -d 10.20.70.2 -p icmp --icmp-type 0 -j ACCEPT
+
+#Permissão do serviço DNS para a LAN Corporate e do ping (para testar)
+iptables -A FORWARD -s 10.20.64.0/23 -d 10.20.70.2 -p tcp --dport 53 -j ACCEPT
+iptables -A FORWARD -d 10.20.64.0/23 -s 10.20.70.2 -p tcp --sport 53 -j ACCEPT
+iptables -A FORWARD -s 10.20.64.0/23 -d 10.20.70.2 -p udp --dport 53 -j ACCEPT
+iptables -A FORWARD -d 10.20.64.0/23 -s 10.20.70.2 -p udp --sport 53 -j ACCEPT
+iptables -A FORWARD -s 10.20.64.0/23 -d 10.20.70.2 -p icmp --icmp-type 8 -j ACCEPT
+iptables -A FORWARD -d 10.20.64.0/23 -s 10.20.70.2 -p icmp --icmp-type 0 -j ACCEPT
+iptables -A FORWARD -d 10.20.64.0/23 -s 10.20.70.2 -p icmp --icmp-type 8 -j ACCEPT
+iptables -A FORWARD -s 10.20.64.0/23 -d 10.20.70.2 -p icmp --icmp-type 0 -j ACCEPT
+
+#Permissão do serviço DNS para a LAN SCADA e do ping (para testar)
+iptables -A FORWARD -s 10.20.66.0/24 -d 10.20.70.2 -p tcp --dport 53 -j ACCEPT
+iptables -A FORWARD -d 10.20.66.0/24 -s 10.20.70.2 -p tcp --sport 53 -j ACCEPT
+iptables -A FORWARD -s 10.20.66.0/24 -d 10.20.70.2 -p tcp --dport 53 -j ACCEPT
+iptables -A FORWARD -d 10.20.66.0/24 -s 10.20.70.2 -p tcp --sport 53 -j ACCEPT
+iptables -A FORWARD -s 10.20.66.0/24 -d 10.20.70.2 -p icmp --icmp-type 8 -j ACCEPT
+iptables -A FORWARD -d 10.20.66.0/24 -s 10.20.70.2 -p icmp --icmp-type 0 -j ACCEPT
+iptables -A FORWARD -d 10.20.66.0/24 -s 10.20.70.2 -p icmp --icmp-type 8 -j ACCEPT
+iptables -A FORWARD -s 10.20.66.0/24 -d 10.20.70.2 -p icmp --icmp-type 0 -j ACCEPT
+
+#Permissão do serviço DNS para a LAN Data Historian e do ping (para testar)
+iptables -A FORWARD -s 10.20.68.0/23 -d 10.20.70.2 -p tcp --dport 53 -j ACCEPT
+iptables -A FORWARD -d 10.20.68.0/23 -s 10.20.70.2 -p tcp --sport 53 -j ACCEPT
+iptables -A FORWARD -s 10.20.68.0/23 -d 10.20.70.2 -p tcp --dport 53 -j ACCEPT
+iptables -A FORWARD -d 10.20.68.0/23 -s 10.20.70.2 -p tcp --sport 53 -j ACCEPT
+iptables -A FORWARD -s 10.20.68.0/23 -d 10.20.70.2 -p icmp --icmp-type 8 -j ACCEPT
+iptables -A FORWARD -d 10.20.68.0/23 -s 10.20.70.2 -p icmp --icmp-type 0 -j ACCEPT
+iptables -A FORWARD -d 10.20.68.0/23 -s 10.20.70.2 -p icmp --icmp-type 8 -j ACCEPT
+iptables -A FORWARD -s 10.20.68.0/23 -d 10.20.70.2 -p icmp --icmp-type 0 -j ACCEPT
+
+#Permissão do ping entre a LAN Corporate e a LAN SCADA
+iptables -A FORWARD -s 10.20.64.0/23 -d 10.20.66.0/24 -p icmp --icmp-type 8 -j ACCEPT
+iptables -A FORWARD -d 10.20.64.0/23 -s 10.20.66.0/24 -p icmp --icmp-type 0 -j ACCEPT
+iptables -A FORWARD -d 10.20.64.0/23 -s 10.20.66.0/24 -p icmp --icmp-type 8 -j ACCEPT
+iptables -A FORWARD -s 10.20.64.0/23 -d 10.20.66.0/24 -p icmp --icmp-type 0 -j ACCEPT
+
+#Permissão do ping entre a LAN Corporate e a LAN Data Historian
+iptables -A FORWARD -s 10.20.64.0/23 -d 10.20.68.0/23 -p icmp --icmp-type 8 -j ACCEPT
+iptables -A FORWARD -d 10.20.64.0/23 -s 10.20.68.0/23 -p icmp --icmp-type 0 -j ACCEPT
+iptables -A FORWARD -d 10.20.64.0/23 -s 10.20.68.0/23 -p icmp --icmp-type 8 -j ACCEPT
+iptables -A FORWARD -s 10.20.64.0/23 -d 10.20.68.0/23 -p icmp --icmp-type 0 -j ACCEPT
+
+#Permissão do ping entre a LAN Data Historian e a LAN SCADA
+iptables -A FORWARD -s 10.20.68.0/23 -d 10.20.66.0/24 -p icmp --icmp-type 8 -j ACCEPT
+iptables -A FORWARD -d 10.20.68.0/23 -s 10.20.66.0/24 -p icmp --icmp-type 0 -j ACCEPT
+iptables -A FORWARD -d 10.20.68.0/23 -s 10.20.66.0/24 -p icmp --icmp-type 8 -j ACCEPT
+iptables -A FORWARD -s 10.20.68.0/23 -d 10.20.66.0/24 -p icmp --icmp-type 0 -j ACCEPT
+
+#Permissão do ping da a LAN Corporate e para a Internet
+iptables -A FORWARD -s 10.20.64.0/23 -d 30.40.0.0/22 -p icmp --icmp-type 8 -j ACCEPT
+iptables -A FORWARD -d 10.20.64.0/23 -s 30.40.0.0/22 -p icmp --icmp-type 0 -j ACCEPT
+
+#Permissão do SSH entre a LAN Corporate e o Web Server
+iptables -A FORWARD -s 10.20.64.0/23 -d 10.20.70.3 -p tcp --dport 22 -j ACCEPT
+iptables -A FORWARD -d 10.20.64.0/23 -s 10.20.70.3 -p tcp --sport 22 -j ACCEPT
+

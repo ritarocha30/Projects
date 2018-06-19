@@ -1,0 +1,12 @@
+### IP Address & Routing Config ###
+ip addr add dev eth0 169.254.1.2/16 
+ip link set dev eth0 up
+ip addr add dev eth1 30.40.2.1/23 
+ip link set dev eth1 up
+ip addr add dev eth2 30.40.0.1/23 
+ip link set dev eth2 up
+ip route add 10.20.64.0/21 via 169.254.1.1
+
+
+
+

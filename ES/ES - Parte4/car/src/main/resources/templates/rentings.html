@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Rentings</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet"
+	th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}" />
+<script th:src="@{/webjars/jquery/3.1.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+</head>
+<body>
+	<div class="container">
+		<h2>
+			Rentings of Vehicle <span th:text="${vehicle.plate}"></span> in RentACar <span th:text="${vehicle.rentACarName}"></span>
+		</h2>
+		<a class="btn btn-default pull-right" th:href="@{/rentACars/{plate}/vehicles(plate=${vehicle.rentACarCode})}">Vehicle</a>
+		<br/>
+		<h3>Create Renting</h3>
+		<p class="text-danger" th:text="${error}"></p>
+		<form class="form-inline" th:action="@{/rentACars/{code}/vehicles/{plate}/rentings(code=${vehicle.rentACarCode},plate=${vehicle.plate})}" th:object="${renting}" method="post">
+			<label>Driving License: </label> <input class="form-control" type="text" th:field="*{drivingLicense}" /> 
+			<label>Begin: </label> <input class="form-control" type="date" th:field="*{begin}" /> 
+			<label>End: </label> <input class="form-control" type="date" th:field="*{end}" />
+			<br/><br/>
+			<label>Client NIF: </label> <input class="form-control" type="text" th:field="*{clientNif}" /> 
+			<label>Client IBAN: </label> <input class="form-control" type="text" th:field="*{clientIban}" /> 
+			<input class="btn btn-primary" type="submit" value="Submit" />
+		</form>
+		<br/>
+		<h3>List of Rentings</h3>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Reference</th>
+					<th>Driving License</th>
+					<th>Begin</th>
+ 					<th>End</th>
+					<th>Client NIF</th>
+					<th>Client IBAN</th>
+					<th>Price</th>
+					<th>Cancellation</th>
+					<th>Cancellation Date</th>					
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="renting : ${vehicle.rentings}">
+					<td th:text="${renting.reference}"></td>
+					<td th:text="${renting.drivingLicense}"></td>
+					<td th:text="${renting.begin}"></td>
+					<td th:text="${renting.end}"></td>
+					<td th:text="${renting.clientNif}"></td>
+					<td th:text="${renting.clientIban}"></td>
+					<td th:text="${renting.price}"></td>
+					<td th:text="${renting.cancellation}"></td>
+					<td th:text="${renting.cancellationDate}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

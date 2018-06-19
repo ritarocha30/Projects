@@ -1,0 +1,7 @@
+### IP Address & Routing Config ###
+ip addr add dev eth0 30.40.0.2/23
+ip link set dev eth0 up
+ip route add default via 30.40.0.1
+
+### SSH Initialization ###
+/etc/init.d/ssh start

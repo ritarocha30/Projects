@@ -1,0 +1,12 @@
+### IP Address & Routing Config ###
+ip addr add dev eth0 10.20.67.2/26
+ip link set dev eth0 up
+ip addr add dev eth1 10.20.67.65/26
+ip link set dev eth1 up
+ip route add default via 10.20.67.1
+
+### DCHP Server Initialization ###
+/etc/init.d/dhcp3-server start
+
+### SNMP Initialization ###
+/etc/init.d/snmpd start

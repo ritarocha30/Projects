@@ -1,0 +1,2 @@
+### DHCP Client Start Listenning ###
+/etc/init.d/networking start 

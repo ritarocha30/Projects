@@ -1,0 +1,74 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number: 1 (0x1)
+        Signature Algorithm: sha1WithRSAEncryption
+        Issuer: C=PT, ST=Lisboa, L=Taguspark, O=ICI, OU=SCADA, CN=CA_SCADA/emailAddress=scada_ca@ici.pt
+        Validity
+            Not Before: May 15 08:55:21 2018 GMT
+            Not After : May 12 08:55:21 2028 GMT
+        Subject: C=PT, ST=Lisboa, L=Taguspark, O=ICI, OU=SCADA, CN=Server_SCADA/emailAddress=scada@ici.pt
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+            RSA Public Key: (1024 bit)
+                Modulus (1024 bit):
+                    00:ca:54:3a:8d:bd:94:e5:5d:b0:19:e0:20:7a:ad:
+                    85:30:0e:60:da:be:72:3b:77:c5:73:22:9c:eb:9b:
+                    e9:04:66:3f:93:b6:a1:4d:2d:8f:be:9f:cf:5b:b5:
+                    47:34:ba:85:e2:83:9c:0a:6e:e3:1e:61:40:22:60:
+                    88:4a:c9:c2:9b:4f:c7:00:89:2e:63:4c:55:7d:42:
+                    d8:13:9c:d1:f1:c3:84:6c:b9:8a:3e:50:ad:37:5d:
+                    72:31:9a:6c:48:c9:6b:36:c5:78:a3:11:f9:78:cd:
+                    8a:c9:98:35:b5:1a:d1:98:e6:07:04:d2:77:16:fb:
+                    53:a4:c9:cd:63:00:64:77:b3
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            Netscape Cert Type: 
+                SSL Server
+            Netscape Comment: 
+                Easy-RSA Generated Server Certificate
+            X509v3 Subject Key Identifier: 
+                E2:D1:FA:E6:D4:10:10:52:F6:60:54:4C:2D:78:51:93:24:30:4D:E4
+            X509v3 Authority Key Identifier: 
+                keyid:DF:BE:B4:78:41:FE:94:B7:DD:A7:1B:D3:AB:43:32:EE:0D:2F:49:9E
+                DirName:/C=PT/ST=Lisboa/L=Taguspark/O=ICI/OU=SCADA/CN=CA_SCADA/emailAddress=scada_ca@ici.pt
+                serial:E3:0D:DB:9D:77:AF:44:0A
+
+            X509v3 Extended Key Usage: 
+                TLS Web Server Authentication
+            X509v3 Key Usage: 
+                Digital Signature, Key Encipherment
+    Signature Algorithm: sha1WithRSAEncryption
+        d5:41:a8:10:fd:cb:85:58:ed:da:90:54:c0:35:a3:cd:40:a0:
+        43:36:bd:0e:6a:30:a4:4e:72:22:a7:ce:5d:3d:16:b0:5d:c4:
+        b1:5b:be:9b:84:30:39:48:e3:d0:f1:04:95:1d:25:ff:94:6a:
+        fe:96:11:48:74:b2:33:5e:df:c8:13:2a:f4:23:80:ba:86:d5:
+        8e:90:08:dc:e3:ae:4d:b6:7b:67:a6:b6:68:5c:c4:bd:59:72:
+        e7:1e:ee:22:13:f1:92:8f:b0:e5:6a:90:84:c0:18:76:e3:05:
+        d2:98:ac:a9:9e:63:dc:5d:68:c0:16:b7:66:17:b1:e9:96:af:
+        22:47
+-----BEGIN CERTIFICATE-----
+MIID1TCCAz6gAwIBAgIBATANBgkqhkiG9w0BAQUFADCBgzELMAkGA1UEBhMCUFQx
+DzANBgNVBAgTBkxpc2JvYTESMBAGA1UEBxMJVGFndXNwYXJrMQwwCgYDVQQKEwNJ
+Q0kxDjAMBgNVBAsTBVNDQURBMREwDwYDVQQDFAhDQV9TQ0FEQTEeMBwGCSqGSIb3
+DQEJARYPc2NhZGFfY2FAaWNpLnB0MB4XDTE4MDUxNTA4NTUyMVoXDTI4MDUxMjA4
+NTUyMVowgYQxCzAJBgNVBAYTAlBUMQ8wDQYDVQQIEwZMaXNib2ExEjAQBgNVBAcT
+CVRhZ3VzcGFyazEMMAoGA1UEChMDSUNJMQ4wDAYDVQQLEwVTQ0FEQTEVMBMGA1UE
+AxQMU2VydmVyX1NDQURBMRswGQYJKoZIhvcNAQkBFgxzY2FkYUBpY2kucHQwgZ8w
+DQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAMpUOo29lOVdsBngIHqthTAOYNq+cjt3
+xXMinOub6QRmP5O2oU0tj76fz1u1RzS6heKDnApu4x5hQCJgiErJwptPxwCJLmNM
+VX1C2BOc0fHDhGy5ij5QrTddcjGabEjJazbFeKMR+XjNismYNbUa0ZjmBwTSdxb7
+U6TJzWMAZHezAgMBAAGjggFUMIIBUDAJBgNVHRMEAjAAMBEGCWCGSAGG+EIBAQQE
+AwIGQDA0BglghkgBhvhCAQ0EJxYlRWFzeS1SU0EgR2VuZXJhdGVkIFNlcnZlciBD
+ZXJ0aWZpY2F0ZTAdBgNVHQ4EFgQU4tH65tQQEFL2YFRMLXhRkyQwTeQwgbgGA1Ud
+IwSBsDCBrYAU3760eEH+lLfdpxvTq0My7g0vSZ6hgYmkgYYwgYMxCzAJBgNVBAYT
+AlBUMQ8wDQYDVQQIEwZMaXNib2ExEjAQBgNVBAcTCVRhZ3VzcGFyazEMMAoGA1UE
+ChMDSUNJMQ4wDAYDVQQLEwVTQ0FEQTERMA8GA1UEAxQIQ0FfU0NBREExHjAcBgkq
+hkiG9w0BCQEWD3NjYWRhX2NhQGljaS5wdIIJAOMN2513r0QKMBMGA1UdJQQMMAoG
+CCsGAQUFBwMBMAsGA1UdDwQEAwIFoDANBgkqhkiG9w0BAQUFAAOBgQDVQagQ/cuF
+WO3akFTANaPNQKBDNr0OajCkTnIip85dPRawXcSxW76bhDA5SOPQ8QSVHSX/lGr+
+lhFIdLIzXt/IEyr0I4C6htWOkAjc465NtntnprZoXMS9WXLnHu4iE/GSj7DlapCE
+wBh24wXSmKypnmPcXWjAFrdmF7Hplq8iRw==
+-----END CERTIFICATE-----

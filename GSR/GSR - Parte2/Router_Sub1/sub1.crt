@@ -1,0 +1,71 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number: 2 (0x2)
+        Signature Algorithm: sha1WithRSAEncryption
+        Issuer: C=PT, ST=Lisboa, L=Taguspark, O=ICI, OU=SCADA, CN=CA_SCADA/emailAddress=scada_ca@ici.pt
+        Validity
+            Not Before: May 15 08:57:22 2018 GMT
+            Not After : May 12 08:57:22 2028 GMT
+        Subject: C=PT, ST=Lisboa, L=Oeiras, O=ICI, OU=Substation1, CN=Client_Sub1/emailAddress=sub1@ici.pt
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+            RSA Public Key: (1024 bit)
+                Modulus (1024 bit):
+                    00:9d:b7:14:cc:83:40:01:7d:58:12:4e:91:e4:8f:
+                    34:74:2d:9b:0f:46:de:d2:81:c9:a2:f7:6b:97:a7:
+                    f4:60:4f:fa:59:60:62:f2:05:9f:a6:b2:6e:da:de:
+                    e3:10:95:49:5b:3f:cf:bd:47:ee:8d:26:95:b4:da:
+                    4a:02:ce:22:ed:70:1e:f4:f8:d1:ea:8d:3d:7f:97:
+                    26:bc:1d:5e:64:25:48:f1:f3:f6:70:bd:70:2c:fe:
+                    7c:02:74:2a:43:82:d2:6e:05:78:b8:f4:44:d1:98:
+                    6f:36:dc:97:8b:61:dc:7e:b7:d2:e2:ff:b9:17:1b:
+                    f1:22:90:04:bc:ba:17:1b:01
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            Netscape Comment: 
+                Easy-RSA Generated Certificate
+            X509v3 Subject Key Identifier: 
+                A3:EB:AD:43:27:EF:C1:A1:B5:7A:A8:76:47:38:34:57:5F:B5:C6:AC
+            X509v3 Authority Key Identifier: 
+                keyid:DF:BE:B4:78:41:FE:94:B7:DD:A7:1B:D3:AB:43:32:EE:0D:2F:49:9E
+                DirName:/C=PT/ST=Lisboa/L=Taguspark/O=ICI/OU=SCADA/CN=CA_SCADA/emailAddress=scada_ca@ici.pt
+                serial:E3:0D:DB:9D:77:AF:44:0A
+
+            X509v3 Extended Key Usage: 
+                TLS Web Client Authentication
+            X509v3 Key Usage: 
+                Digital Signature
+    Signature Algorithm: sha1WithRSAEncryption
+        a2:44:ba:16:23:19:a7:67:07:dd:09:59:03:7b:36:87:f7:af:
+        b3:bb:70:46:29:6c:90:d2:16:3b:0c:96:60:ae:89:f6:68:95:
+        99:b3:31:40:5c:b2:8c:bd:18:e0:50:e5:19:28:68:fa:e4:ac:
+        c2:d2:c7:ff:8d:b9:37:3b:29:c3:35:67:44:93:58:52:c9:8c:
+        ce:2d:1e:a0:ee:2b:9a:b7:ce:a3:62:29:bb:df:8f:68:d3:e2:
+        49:18:f6:3a:14:92:e6:54:13:30:8f:76:0f:5e:3b:12:da:61:
+        cd:32:2c:a0:23:d0:51:2d:7f:67:c0:53:b9:eb:09:f9:a5:60:
+        5a:96
+-----BEGIN CERTIFICATE-----
+MIIDvDCCAyWgAwIBAgIBAjANBgkqhkiG9w0BAQUFADCBgzELMAkGA1UEBhMCUFQx
+DzANBgNVBAgTBkxpc2JvYTESMBAGA1UEBxMJVGFndXNwYXJrMQwwCgYDVQQKEwNJ
+Q0kxDjAMBgNVBAsTBVNDQURBMREwDwYDVQQDFAhDQV9TQ0FEQTEeMBwGCSqGSIb3
+DQEJARYPc2NhZGFfY2FAaWNpLnB0MB4XDTE4MDUxNTA4NTcyMloXDTI4MDUxMjA4
+NTcyMlowgYUxCzAJBgNVBAYTAlBUMQ8wDQYDVQQIEwZMaXNib2ExDzANBgNVBAcT
+Bk9laXJhczEMMAoGA1UEChMDSUNJMRQwEgYDVQQLEwtTdWJzdGF0aW9uMTEUMBIG
+A1UEAxQLQ2xpZW50X1N1YjExGjAYBgkqhkiG9w0BCQEWC3N1YjFAaWNpLnB0MIGf
+MA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCdtxTMg0ABfVgSTpHkjzR0LZsPRt7S
+gcmi92uXp/RgT/pZYGLyBZ+msm7a3uMQlUlbP8+9R+6NJpW02koCziLtcB70+NHq
+jT1/lya8HV5kJUjx8/ZwvXAs/nwCdCpDgtJuBXi49ETRmG823JeLYdx+t9Li/7kX
+G/EikAS8uhcbAQIDAQABo4IBOjCCATYwCQYDVR0TBAIwADAtBglghkgBhvhCAQ0E
+IBYeRWFzeS1SU0EgR2VuZXJhdGVkIENlcnRpZmljYXRlMB0GA1UdDgQWBBSj661D
+J+/BobV6qHZHODRXX7XGrDCBuAYDVR0jBIGwMIGtgBTfvrR4Qf6Ut92nG9OrQzLu
+DS9JnqGBiaSBhjCBgzELMAkGA1UEBhMCUFQxDzANBgNVBAgTBkxpc2JvYTESMBAG
+A1UEBxMJVGFndXNwYXJrMQwwCgYDVQQKEwNJQ0kxDjAMBgNVBAsTBVNDQURBMREw
+DwYDVQQDFAhDQV9TQ0FEQTEeMBwGCSqGSIb3DQEJARYPc2NhZGFfY2FAaWNpLnB0
+ggkA4w3bnXevRAowEwYDVR0lBAwwCgYIKwYBBQUHAwIwCwYDVR0PBAQDAgeAMA0G
+CSqGSIb3DQEBBQUAA4GBAKJEuhYjGadnB90JWQN7Nof3r7O7cEYpbJDSFjsMlmCu
+ifZolZmzMUBcsoy9GOBQ5RkoaPrkrMLSx/+NuTc7KcM1Z0STWFLJjM4tHqDuK5q3
+zqNiKbvfj2jT4kkY9joUkuZUEzCPdg9eOxLaYc0yLKAj0FEtf2fAU7nrCfmlYFqW
+-----END CERTIFICATE-----

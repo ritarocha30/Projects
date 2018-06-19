@@ -1,0 +1,2 @@
+alert tcp any any -> any 80 (msg:"tcp traffic on port 80"; sid:1, rev:1;)
+alert icmp any any -> any any (msg:"ICMP packet"; sid:447; rev:3;)

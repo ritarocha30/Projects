@@ -1,0 +1,13 @@
+$TTL   60000
+@               IN      SOA     dnspt.pt.    root.dnspt.pt. (
+                        20180410 ; serial
+                        28800 ; refresh
+                        14400 ; retry
+                        3600000 ; expire
+                        0 ; negative cache ttl
+                        )
+@                   IN      NS      dnspt.pt.
+dnspt               IN      A       30.40.2.4
+
+ici                 IN      NS      dnsici.ici.pt.
+dnsici.ici          IN      A       10.20.70.2
