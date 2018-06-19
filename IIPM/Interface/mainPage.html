@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"> <!--tipo de formatacao de texto-->
+    <link href="css/style.css" rel="stylesheet">
+     <link href="css/rateit.css" rel="stylesheet">
+    
+    <script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+    <script type="text/javascript" src="js/func.js"></script>
+    <script type="text/javascript" src="js/jquery.rateit.min.js"></script>
+    
+</head>
+<body> 
+    
+    <div class="popupBackground"></div>
+    <div id="cancelpopup" class="popup">
+            <center><p>Tem a certeza que pretende cancelar o pedido?</p></center>
+            <button class="sim" onclick="clearOrder();">Sim</button>
+            <button class="nao" onclick="closeCancelConfirmation();">Não</button>
+    </div>
+    
+    <div id="paymentpopup" class="popup">
+        <center><p>Dirija-se ao balcão para efetuar o pagamento. Obrigado!</p></center>
+        <br>
+        <p>Total a pagar: <var id="accTotalPopup"></var></p>
+        <button class="ok" onclick="closeInfo('#paymentpopup');">Ok</button>
+    </div>
+    
+        <div id="cd-popup" class="popup">
+            <center><p>Tem a certeza que pretende confirmar o pedido? <br> <i style="font-size: 75%">(uma vez confirmado o seu pedido, não poderá cancelá-lo)</i></p></center>
+            <button class="sim" onclick="addToAccTotal();">Sim</button>
+            <button class="nao" onclick="closeConfirmation();">Não</button>
+        </div>
+    
+    <div id="confirmCommentPopup" class="popup">
+        <center><p>Tem a certeza que pretende enviar o seu comentário?</p></center>
+        <button class="sim" onclick="submit();">Sim</button>
+        <button class="nao" onclick="closeInfo('#confirmCommentPopup');">Não</button>
+    </div>
+    
+    
+    <div id="errorPopupComments" class="popup">
+        <center><p>Precisa de preencher, pelo menos, a classificação por estrelas para poder submeter a sua opinião.</p></center>
+        <button class="ok" onclick="closeInfo('#errorPopupComments');">Ok</button>
+    </div>
+    
+    <div id="tyPopupComments" class="popup">
+        <center><p>Obrigado pela sua opinião!</p></center>
+        <button class="ok" onclick="closeInfo('#tyPopupComments');">Ok</button>
+    </div>
+    
+    <div id="helpPopup" class="hpopup">
+        <button style="position: absolute; right: 0.1%; top:.1%; border:1%; border-radius:0.9em; width: 10%; height: 5%; color:white; background-color:red;" onclick="closeHelp()";>X</button>
+        <h2 style="position: absolute; left: 5%; font-family:Arial, monospace">Ajuda</h2>
+        <img id="helpImage" src="img/divnodiv.png" style="position: absolute; width: 90%; height: 80%; top: 10%; left:5%;">
+    </div>
+    
+    
+    <div id="intTable"> 
+    <div id="topBar"> 
+        <p1 id="welcome">Bem vindo, João!</p1>
+        <a href="authPage.html"><img src="img/sair.png" style="cursor: pointer; position: absolute; left:90%; width:10%; height:70%; top:16%"></a>
+        <img src="img/web-buttons-465941_960_720v.png" style="cursor: pointer; position: absolute; left:78.5%; width:10%; height:70%; top:15%" onclick="showHelp()";>
+    </div>
+    <div id="navMenu">
+            <div id="accordian">
+              <ul>
+                <li>
+                  <h3><img src="img/plate-fork-and-knife.png"> Consumir</h3>
+                  <ul>
+                    <li><a href="#" onclick="showDiv('#aguaCafeSumos');"><img src="img/water.png"> Água/Café/Sumos</a> </li>
+                    <li><a href="#" onclick="showDiv('#tostasAperitivos');"><img src="img/hamburger.png"> Aperitivos/Tostas</a> </li>  
+                    <li><a href="#" onclick="showDiv('#bebidasEspirituosas');"><img src="img/cocktail.png"> Bebidas Espirituosas</a> </li>   
+                    <li><a href="#" onclick="showDiv('#cervejaSangria');"><img src="img/pint.png"> Cerveja/Sangria</a> </li>  
+                  </ul>  
+                </li>
+                <li>
+                    <a id="callEmpregado" href="#" onclick="showDiv('#empregado');"><h3 style="color: white;"><img src="img/serving-drinks.png"> Chamar Empregado</h3></a>
+                </li>
+                <li>
+                  <h3><img src="img/rankings.png"> Classificar/Sugerir</h3>
+                  <ul>
+                    <li><a href="#" onclick="showDiv('#barComments');"><img src="img/bar.png"> Bar</a> </li>  
+                    <li><a href="#" onclick="showDiv('#classiConsumiveis')"><img src="img/glass.png"> Consumiveis</a> </li>  
+                    <li><a href="#" onclick="showDiv('#topClassificacoes')"><img src="img/ranking-factor.png"> Top de Classificações</a> </li>  
+                  </ul>  
+                </li>
+                <li>
+                    <style type="text/css">
+                        a:link {
+                            text-decoration: none;
+                        }
+                        a:visited {
+                            text-decoration: none;
+                            color: black;
+                        }  
+                    </style>
+                    <a href="#" onclick="showDiv('#eventosdobar');"><h3 style="color: white"><img src="img/calendar.png"> Eventos do Bar</h3></a>
+                </li>
+                <li>
+                    <style type="text/css">
+                        a:link {
+                            text-decoration: none;
+                        }
+                        a:visited {
+                            text-decoration: none;
+                            color: black;
+                        }  
+                    </style>
+                    <a id ="games" href="#" onclick="showDiv('#maintenancePage');"><h3 style="color: white"> <img src="img/joystick.png"> Jogos</h3></a>
+                </li>
+                <!-- will add more later -->
+              </ul>
+            </div>
+        </div>
+        
+        
+        <div id="centralPage" >
+            
+            <div id="keyboardpopup" class="keyboardpopup">
+                <div id="closeKeyboardDiv" onclick="closeKeyboard()"></div>
+                
+            
+            </div>
+            
+            
+            <!------------ Inicio div manutençao --------------->
+            <div id="maintenancePage">
+            
+                <h1 style="color:black; text-align:center; font-family:Arial; font-size: 1.7em "> Página em manutenção, por favor tente mais tarde. </h1>
+                <br><br/>
+                <center><img src="img/manutencao.jpg" style="position: relative"></center>
+            
+            </div>
+            <!------------ Fim div manutençao --------------->
+            
+            <!------------ Inicio div eventos --------------->
+            <div id="eventosdobar" style="background-image: url(img/bebidas.png); width=60%; height=60%;">
+            
+                <h1 style="color:red; text-align:center; font-family:Arial, monospace; font-size:160% "> BARISTA - EVENTOS </h1>
+                <br>
+                <h2 style="font-family:Arial, monospace; position:absolute; font-size:100%; top:14%">SEGUNDA-FEIRA</h2>
+                <p style="font-family:Arial, monospace; position:absolute; font-size:100%; top: 20%">Noite de Karaoke <br>Horas - 22:00 </p>
+
+                <h2 style="font-family:Arial, monospace; position:absolute; font-size:100%; top:34%">TERÇA-FEIRA</h2>
+                <p style="font-family:Arial, monospace; position:absolute; font-size:100%; top:40%">Ladys Night<br> Horas - 22:00 </p>
+
+                <h2 style="font-family:Arial, monospace; position:absolute; font-size:100%; top:54%">QUARTA-FEIRA</h2>
+                <p style="font-family:Arial, monospace; position:absolute; font-size: 100%; top: 60%">Noite Afroflavours <br>Horas - 23:00 </p>
+
+                <h2 style="font-family:Arial, monospace; font-size:100%; position:absolute; font-size:100%; top:74%">QUINTA-FEIRA</h2>
+                <p style="font-family:Arial, monospace; position:absolute; font-size:100%; top:80%">Noite Académica <br>Horas - 23:00 </p>
+
+                <h2 style="font-family:Arial, monospace;font-size:100%; position:absolute; top:14%; left:50%">SEXTA-FEIRA</h2>
+                <p style="font-family:Arial, monospace; font-size:100%; position:absolute; top: 20%; left:50%">Noite Eletrónica <br>Horas - 23:00 </p>
+
+                <h2 style="font-family:Arial, monospace;font-size:100%; position:absolute; top: 34%; left:50%">SÁBADO</h2>
+                <p style="font-family:Arial, monospace;font-size:100%; position:absolute; top: 40%; left:50%">DJ Residente <br>Horas - 23:00 </p>
+
+                <h2 style="font-family:Arial, monospace; position:absolute; font-size:130%; top:70%; left:50%">HAPPY HOUR <br> 23:00-00:30</h2>
+
+            </div>
+            <!------------ Fim div eventos --------------->
+            
+            <!------------ Inicio div tostas e aperitivos --------------->
+            <div id="tostasAperitivos">
+                <h3>Consumir > Aperitivos / Tostas</h3>
+                
+                <button id="azTostas" class="az" style="background: #00CC00;">A-Z</button>
+                <button id="azTostasDecres" class="azInv" onclick="showDiv('#tostasAperitivosAzInv')">Z-A</button>
+                <button id="moneyTostas" class="money" onclick="showDiv('#tostasAperitivosPreco')">Menor Preço</button>
+                <button id="moneyTostasDecres" class="moneyInv" onclick="showDiv('#tostasAperitivosPrecoInv')">Maior Preço</button>
+                
+                <ul class="products">
+                    <li><a href="#" onclick="addItem('Amendoins', 0.60,'amendoins');"><img src="img/amendoins.png"; style="position: absolute; width: 20%; top:15%"></a></li>
+                    <li><a href="#" onclick="addItem('Hamburguer', 3.50,'hamburguer');"><img src="img/hamburguer.png"; style="position: absolute; width: 20%; top:15%; left: 28%"></a></li>
+                    <li><a href="#" onclick="addItem('Pistachios', 0.60,'pistachios');"><img src="img/pistachios.png"; style="position: absolute; width: 20%; top:15%; left: 50%"></a></li>
+                    <li><a href="#" onclick="addItem('Tosta Atum', 2.30, 'tostadeAtum');"><img src="img/tostadeatum.png"; style="position: absolute; width: 20%; top:15%; left: 72%"></a></li>
+                    <li><a href="#" onclick="addItem('Tosta Frango', 2.40,'tostadeFrango');"><img src="img/tostadefrango.png"; style="position: absolute; width: 20%; top:45%"></a></li>
+                    <li><a href="#" onclick="addItem('Tosta Mista', 2.10,'tostaMista');"><img src="img/tostamista.png"; style="position: absolute; width: 20%; top:45%; left: 28%"></a></li>
+                </ul>
+                <div  id= "amendoinsclass" style="position:absolute; top: 38.5%; left: 9%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "hamburguerclass" style="position:absolute; top: 38.5%; left: 31%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "pistachiosclass" style="position:absolute; top: 38.5%; left: 53%" class="rateit" data-rateit-value="2" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "tostadeAtumclass" style="position:absolute; top: 38.5%; left: 75%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "tostadeFrangoclass" style="position:absolute; top: 68.5%; left: 9%" class="rateit" data-rateit-value="5" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "tostaMistaclass" style="position:absolute; top: 68.5%; left: 31%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+            </div>
+            <!------------ Fim div tostas e aperitivos --------------->
+            
+            <!------------ Inicio div tostas e aperitivos Z-A --------------->
+            <div id="tostasAperitivosAzInv">
+                <h3>Consumir > Aperitivos / Tostas</h3>
+                
+                <button id="azTostas" class="az" onclick="showDiv('#tostasAperitivos')">A-Z</button>
+                <button id="azTostasDecres" class="azInv" style="background: #00CC00;">Z-A</button>
+                <button id="moneyTostas" class="money" onclick="showDiv('#tostasAperitivosPreco')">Menor Preço</button>
+                <button id="moneyTostasDecres" class="moneyInv" onclick="showDiv('#tostasAperitivosPrecoInv')">Maior Preço</button>
+                
+                <ul class="products">
+                    <li><a href="#" onclick="addItem('Amendoins', 0.60,'amendoins');"><img src="img/amendoins.png"; style="position: absolute; width: 20%; top:45%; left: 28%"></a></li>
+                    <li><a href="#" onclick="addItem('Hamburguer', 3.50,'hamburguer');"><img src="img/hamburguer.png"; style="position: absolute; width: 20%; top:45%"></a></li>
+                    <li><a href="#" onclick="addItem('Pistachios', 0.60,'pistachios');"><img src="img/pistachios.png"; style="position: absolute; width: 20%; top:15%; left: 72%"></a></li>
+                    <li><a href="#" onclick="addItem('Tosta Atum', 2.30, 'tostadeAtum');"><img src="img/tostadeatum.png"; style="position: absolute; width: 20%; top:15%; left: 50%"></a></li>
+                    <li><a href="#" onclick="addItem('Tosta Frango', 2.40,'tostadeFrango');"><img src="img/tostadefrango.png"; style="position: absolute; width: 20%; top:15%; left:28%"></a></li>
+                     <li><a href="#" onclick="addItem('Tosta Mista', 2.10,'tostaMista');"><img src="img/tostamista.png"; style="position: absolute; width: 20%; top:15%"></a></li>
+                </ul>
+                <div  id= "amendoinsclassz" style="position:absolute; top: 68.5%; left: 31%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "hamburguerclassz" style="position:absolute; top: 68.5%; left: 9%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "pistachiosclassz" style="position:absolute; top: 38.5%; left: 75%" class="rateit" data-rateit-value="2" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "tostadeAtumclassz" style="position:absolute; top: 38.5%; left: 53%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "tostadeFrangoclassz" style="position:absolute; top: 38.5%; left: 31%" class="rateit" data-rateit-value="5" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "tostaMistaclassz" style="position:absolute; top: 38.5%; left: 9%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+            </div>
+            <!------------ Fim div tostas e aperitivos Z-A--------------->
+            
+            <!------------ Inicio div tostas e aperitivos Preco--------------->
+            <div id="tostasAperitivosPreco">
+                <h3>Consumir > Aperitivos / Tostas</h3>
+                
+                <button id="azTostas" class="az" onclick="showDiv('#tostasAperitivos')">A-Z</button>
+                <button id="azTostasDecres" class="azInv" onclick="showDiv('#tostasAperitivosAzInv')">Z-A</button>
+                <button id="moneyTostas" class="money" style="background: #00CC00;">Menor Preço</button>
+                <button id="moneyTostasDecres" class="moneyInv" onclick="showDiv('#tostasAperitivosPrecoInv')">Maior Preço</button>
+                
+                <ul class="products">
+                    <li><a href="#" onclick="addItem('Amendoins', 0.60,'amendoins');"><img src="img/amendoins.png"; style="position: absolute; width: 20%; top:15%"></a></li>
+                    <li><a href="#" onclick="addItem('Pistachios', 0.60,'pistachios');"><img src="img/pistachios.png"; style="position: absolute; width: 20%; top:15%; left: 28%"></a></li>
+                    <li><a href="#" onclick="addItem('Tosta Mista', 2.10,'tostaMista');"><img src="img/tostamista.png"; style="position: absolute; width: 20%; top:15%; left: 50%"></a></li>
+                    <li><a href="#" onclick="addItem('Tosta Atum', 2.30, 'tostadeAtum');"><img src="img/tostadeatum.png"; style="position: absolute; width: 20%; top:15%; left:72%"></a></li>
+                    <li><a href="#" onclick="addItem('Tosta Frango', 2.40,'tostadeFrango');"><img src="img/tostadefrango.png"; style="position: absolute; width: 20%; top:45%"></a></li>
+                    <li><a href="#" onclick="addItem('Hamburguer', 3.50,'hamburguer');"><img src="img/hamburguer.png"; style="position: absolute; width: 20%; top:45%; left: 28%"></a></li>
+                </ul>
+                <div  id= "amendoinsclassp" style="position:absolute; top: 38.5%; left: 9%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "hamburguerclassp" style="position:absolute; top: 68.5%; left: 31%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "pistachiosclassp" style="position:absolute; top: 38.5%; left: 31%" class="rateit" data-rateit-value="2" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "tostadeAtumclassp" style="position:absolute; top: 38.5%; left: 75%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "tostadeFrangoclassp" style="position:absolute; top: 68.5%; left: 9%" class="rateit" data-rateit-value="5" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "tostaMistaclassp" style="position:absolute; top: 38.5%; left: 53%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+            </div>
+            <!------------ Fim div tostas e aperitivos --------------->
+            
+            <!------------ Inicio div tostas e aperitivos Preço Inv --------------->
+            <div id="tostasAperitivosPrecoInv">
+                <h3>Consumir > Aperitivos / Tostas</h3>
+                
+                <button id="azTostas" class="az" onclick="showDiv('#tostasAperitivos')">A-Z</button>
+                <button id="azTostasDecres" class="azInv" onclick="showDiv('#tostasAperitivosAzInv')">Z-A</button>
+                <button id="moneyTostas" class="money" onclick="showDiv('#tostasAperitivosPreco')">Menor Preço</button>
+                <button id="moneyTostasDecres" class="moneyInv" style="background: #00CC00;">Maior Preço</button>
+                
+                <ul class="products">
+                    <li><a href="#" onclick="addItem('Amendoins', 0.60,'amendoins');"><img src="img/amendoins.png"; style="position: absolute; width: 20%; top:45%; left: 28%"></a></li>
+                    <li><a href="#" onclick="addItem('Pistachios', 0.60,'pistachios');"><img src="img/pistachios.png"; style="position: absolute; width: 20%; top:45%"></a></li>
+                    <li><a href="#" onclick="addItem('Tosta Mista', 2.10,'tostaMista');"><img src="img/tostamista.png"; style="position: absolute; width: 20%; top:15%; left: 72%"></a></li>
+                    <li><a href="#" onclick="addItem('Tosta Atum', 2.30, 'tostadeAtum');"><img src="img/tostadeatum.png"; style="position: absolute; width: 20%; top:15%; left: 50%"></a></li>
+                    <li><a href="#" onclick="addItem('Tosta Frango', 2.40,'tostadeFrango');"><img src="img/tostadefrango.png"; style="position: absolute; width: 20%; top:15%; left:28%"></a></li>
+                    <li><a href="#" onclick="addItem('Hamburguer', 3.50,'hamburguer');"><img src="img/hamburguer.png"; style="position: absolute; width: 20%; top:15%"></a></li>
+                </ul>
+                <div  id= "amendoinsclasspi" style="position:absolute; top: 68.5%; left: 31%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "hamburguerclasspi" style="position:absolute; top: 38.5%; left: 9%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "pistachiosclasspi" style="position:absolute; top: 68.5%; left: 9%" class="rateit" data-rateit-value="2" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "tostadeaAtumclasspi" style="position:absolute; top: 38.5%; left: 53%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "tostadeFrangoclasspi" style="position:absolute; top: 38.5%; left: 31%" class="rateit" data-rateit-value="5" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "tostaMistaclasspi" style="position:absolute; top: 38.5%; left: 75%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+            </div>
+            <!------------ Fim div tostas e aperitivos Preço Inv --------------->
+            
+            
+            <!------------ Inicio div Água/Café/Sumos ---------------->
+            <div id="aguaCafeSumos">
+                <h3>Consumir > Água / Café / Sumos</h3>
+                
+                <button id="azAguas" class="az" style="background: #00CC00;">A-Z</button>
+                <button id="azAguasDecres" class="azInv" onclick="showDiv('#aguaCafeSumosAzInv')">Z-A</button>
+                <button id="moneyAguas" class="money" onclick="showDiv('#aguaCafeSumosPreco')">Menor Preço</button>
+                <button id="moneyAguasDecres" class="moneyInv" onclick="showDiv('#aguaCafeSumosPrecoInv')">Maior Preço</button>
+                
+                <ul class="products">
+                    <li><a href="#" onclick="addItem('Água', 1.00, 'agua');"><img src="img/agua.png"; style="position: absolute; width: 20%; top:15%"></a><li>
+                    <li><a href="#" onclick="addItem('Água com gás', 1.20,'aguaComGas');"><img src="img/aguacomgas.png"; style="position: absolute; width: 20%; top:15%; left: 28%"></a></li>
+                    <li><a href="#" onclick="addItem('Café', 0.50,'cafe');"><img src="img/cafe.png"; style="position: absolute; width: 20%; top:15%; left: 50%"></a></li>
+                    <li><a href="#" onclick="addItem('Coca-Cola', 1.50,'cocaCola');"><img src="img/cocacola.png"; style="position: absolute; width: 20%; top:15%; left: 72%"></a></li>
+                    <li><a href="#" onclick="addItem('Descafeinado', 0.60,'descafeinado');"><img src="img/descafeinado.png"; style="position: absolute; width: 20%; top:45%"></a></li>
+                    <li><a href="#" onclick="addItem('Groselha', 1.50, 'groselha');"><img src="img/groselha.png"; style="position: absolute; width: 20%; top:45%; left: 28%"></a><li>
+                    <li><a href="#" onclick="addItem('Limonada', 1.50,'limonada');"><img src="img/limonada.png"; style="position: absolute; width: 20%; top:45%; left: 50%"></a></li>
+                    <li><a href="#" onclick="addItem('Monster', 3.00,'monster');"><img src="img/monster.png"; style="position: absolute; width: 20%; top:45%; left: 72%"></a></li>
+                    <li><a href="#" onclick="addItem('RedBull', 2.00,'redBull');"><img src="img/redbull.png"; style="position: absolute; width: 20%; top:75%"></a></li>
+                    <li><a href="#" onclick="addItem('SevenUp', 1.50,'sevenUp');"><img src="img/sevenup.png"; style="position: absolute; width: 20%; top:75%; left: 28%"></a></li>
+                    <li><a href="#" onclick="addItem('Sumo de Laranja', 1.50,'sumodeLaranja');"><img src="img/sumodelaranja.png"; style="position: absolute; width: 20%; top:75%; left: 50%"></a></li>
+                </ul>
+                <div id ="aguaclass" style="position:absolute; top: 38.5%; left:9%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div id="aguaComGasclass" style="position:absolute; top: 38.5%; left: 31%" class="rateit" data-rateit-value="5" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "cafeclass" style="position:absolute; top: 38.5%; left: 53%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "cocaColaclass" style="position:absolute; top: 38.5%; left: 75%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "descafeinadoclass" style="position:absolute; top: 68.5%; left: 9%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "groselhaclass" style="position:absolute; top: 68.5%; left: 31%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "limonadaclass" style="position:absolute; top: 68.5%; left: 53%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "monsterclass" style="position:absolute; top: 68.5%; left: 75%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "redBullclass" style="position:absolute; top: 98.5%; left: 9%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "sevenUpclass" style="position:absolute; top: 98.5%; left: 31%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "sumodeLaranjaclass" style="position:absolute; top: 98.5%; left: 53%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+            </div>
+            <!------------ Fim div Água/Café/Sumos --------------->
+            
+             <!------------ Inicio div Água/Café/Sumos Z-A---------------->
+            <div id="aguaCafeSumosAzInv">
+                <h3>Consumir > Água / Café / Sumos</h3>
+                
+                <button id="azAguas" class="az" onclick="showDiv('#aguaCafeSumos')">A-Z</button>
+                <button id="azAguasDecres" class="azInv" style="background: #00CC00;">Z-A</button>
+                <button id="moneyAguas" class="money" onclick="showDiv('#aguaCafeSumosPreco')">Menor Preço</button>
+                <button id="moneyAguasDecres" class="moneyInv" onclick="showDiv('#aguaCafeSumosPrecoInv')">Maior Preço</button>
+                
+                <ul class="products">
+                    <li><a href="#" onclick="addItem('Água', 1.00, 'agua');"><img src="img/agua.png"; style="position: absolute; width: 20%; top:75%; left: 50%"></a></li>
+                    <li><a href="#" onclick="addItem('Água com gás', 1.20,'aguaComGas');"><img src="img/aguacomgas.png"; style="position: absolute; width: 20%; top:75%; left: 28%"></a></li>
+                    <li><a href="#" onclick="addItem('Café', 0.50,'cafe');"><img src="img/cafe.png"; style="position: absolute; width: 20%; top:75%"></a></li>
+                    <li><a href="#" onclick="addItem('Coca-Cola', 1.50,'cocaCola');"><img src="img/cocacola.png"; style="position: absolute; width: 20%; top:45%; left: 72%"></a></li>
+                    <li><a href="#" onclick="addItem('Descafeinado', 0.60,'descafeinado');"><img src="img/descafeinado.png"; style="position: absolute; width: 20%; top:45%; left: 50%"></a></li>
+                    <li><a href="#" onclick="addItem('Groselha', 1.50, 'groselha');"><img src="img/groselha.png"; style="position: absolute; width: 20%; top:45%; left: 28%"></a></li>
+                    <li><a href="#" onclick="addItem('Limonada', 1.50,'limonada');"><img src="img/limonada.png"; style="position: absolute; width: 20%; top:45%"></a></li>
+                    <li><a href="#" onclick="addItem('Monster', 3.00,'monster');"><img src="img/monster.png"; style="position: absolute; width: 20%; top:15%; left: 72%"></a></li>
+                    <li><a href="#" onclick="addItem('RedBull', 2.00,'redBull');"><img src="img/redbull.png"; style="position: absolute; width: 20%; top:15%; left: 50%"></a></li>
+                    <li><a href="#" onclick="addItem('SevenUp', 1.50,'sevenUp');"><img src="img/sevenup.png"; style="position: absolute; width: 20%; top:15%; left: 28%"></a></li>
+                    <li><a href="#" onclick="addItem('Sumo de Laranja', 1.50,'sumodeLaranja');"><img src="img/sumodelaranja.png"; style="position: absolute; width: 20%; top:15%"></a></li>
+            </ul>
+               <div id ="aguaclassz" style="position:absolute; top: 98.5%; left:53%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div id="aguaComGasclassz" style="position:absolute; top: 98.5%; left: 31%" class="rateit" data-rateit-value="5" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "cafeclassz" style="position:absolute; top: 98.5%; left: 9%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "cocaColaclassz" style="position:absolute; top: 68.5%; left: 75%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "descafeinadoclassz" style="position:absolute; top: 68.5%; left: 53%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "groselhaclassz" style="position:absolute; top: 68.5%; left: 31%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "limonadaclassz" style="position:absolute; top: 68.5%; left: 9%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "monsterclassz" style="position:absolute; top: 38.5%; left: 75%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "redBullclassz" style="position:absolute; top: 38.5%; left: 53%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "sevenUpclassz" style="position:absolute; top: 38.5%; left: 31%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "sumodeLaranjaclassz" style="position:absolute; top: 38.5%; left: 9%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+            </div>
+            <!------------ Fim div Água/Café/Sumos Z-A--------------->
+            
+            <!------------ Inicio div Água/Café/Sumos por preço ---------------->
+            <div id="aguaCafeSumosPreco">
+                <h3>Consumir > Água / Café / Sumos</h3>
+                
+                <button id="azAguas" class="az" onclick="showDiv('#aguaCafeSumos')">A-Z</button>
+                <button id="azAguasDecres" class="azInv" onclick="showDiv('#aguaCafeSumosAzInv')">Z-A</button>
+                <button id="moneyAguas" class="money" style="background: #00CC00;"> Menor Preço</button>
+                <button id="moneyAguasDecres" class="moneyInv" onclick="showDiv('#aguaCafeSumosPrecoInv')">Maior Preço</button>
+                
+                <ul class="products">
+                    <li><a href="#" onclick="addItem('Café', 0.50,'cafe');"><img src="img/cafe.png"; style="position: absolute; width: 20%; top:15%"></a></li>
+                    <li><a href="#" onclick="addItem('Descafeinado', 0.60,'descafeinado');"><img src="img/descafeinado.png"; style="position: absolute; width: 20%; top:15%; left: 28%"></a></li>
+                    <li><a href="#" onclick="addItem('Água', 1.00, 'agua');"><img src="img/agua.png"; style="position: absolute; width: 20%; top:15%; left:50%"></a><li>
+                    <li><a href="#" onclick="addItem('Água com gás', 1.20,'aguaComGas');"><img src="img/aguacomgas.png"; style="position: absolute; width: 20%; top:15%; left: 72%"></a></li>
+                    <li><a href="#" onclick="addItem('Coca-Cola', 1.50,'cocaCola');"><img src="img/cocacola.png"; style="position: absolute; width: 20%; top:45%"></a></li>
+                    <li><a href="#" onclick="addItem('Groselha', 1.50, 'groselha');"><img src="img/groselha.png"; style="position: absolute; width: 20%; top:45%; left: 28%"></a><li>
+                    <li><a href="#" onclick="addItem('Limonada', 1.50,'limonada');"><img src="img/limonada.png"; style="position: absolute; width: 20%; top:45%; left: 50%"></a></li>
+                    <li><a href="#" onclick="addItem('SevenUp', 1.50,'sevenUp');"><img src="img/sevenup.png"; style="position: absolute; width: 20%; top:45%; left: 72%"></a></li>
+                    <li><a href="#" onclick="addItem('Sumo de Laranja', 1.50,'sumodeLaranja');"><img src="img/sumodelaranja.png"; style="position: absolute; width: 20%; top:75%"></a></li>
+                    <li><a href="#" onclick="addItem('RedBull', 2.00,'redBull');"><img src="img/redbull.png"; style="position: absolute; width: 20%; top:75%; left: 28%"></a></li>
+                    <li><a href="#" onclick="addItem('Monster', 3.00,'monster');"><img src="img/monster.png"; style="position: absolute; width: 20%; top:75%; left: 50%"></a></li>
+                </ul>
+                
+                <div id ="aguaclassp" style="position:absolute; top: 38.5%; left:53%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div id="aguaComGasclassp" style="position:absolute; top: 38.5%; left: 75%" class="rateit" data-rateit-value="5" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div id= "cafeclassp" style="position:absolute; top: 38.5%; left: 9%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div id= "cocaColaclassp" style="position:absolute; top: 68.5%; left: 9%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div id= "descafeinadoclassp" style="position:absolute; top: 38.5%; left: 31%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div id= "groselhaclassp" style="position:absolute; top: 68.5%; left: 31%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "limonadaclassp" style="position:absolute; top: 68.5%; left: 53%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "monsterclassp" style="position:absolute; top: 98.5%; left: 53%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "redBullclassp" style="position:absolute; top: 98.5%; left: 31%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "sevenUpclassp" style="position:absolute; top: 68.5%; left: 75%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "sumodeLaranjaclassp" style="position:absolute; top: 98.5%; left: 9%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+            </div>
+            <!------------ Fim div Água/Café/Sumos por preço --------------->
+            
+            <!------------ Inicio div Água/Café/Sumos Preço inverso ---------------->
+            <div id="aguaCafeSumosPrecoInv">
+                <h3>Consumir > Água / Café / Sumos</h3>
+                
+                <button id="azAguas" class="az" onclick="showDiv('#aguaCafeSumos')">A-Z</button>
+                <button id="azAguasDecres" class="azInv" onclick="showDiv('#aguaCafeSumosAzInv')">Z-A</button>
+                <button id="moneyAguas" class="money" onclick="showDiv('#aguaCafeSumosPreco')"> Menor Preço</button>
+                <button id="moneyAguasDecres" class="moneyInv" style="background: #00CC00;">Maior Preço</button>
+                
+                <ul class="products">
+                    <li><a href="#" onclick="addItem('Café', 0.50,'cafe');"><img src="img/cafe.png"; style="position: absolute; width: 20%; top:75%; left: 50%"></a></li>
+                    <li><a href="#" onclick="addItem('Descafeinado', 0.60,'descafeinado');"><img src="img/descafeinado.png"; style="position: absolute; width: 20%; top:75%; left: 28%"></a></li>
+                    <li><a href="#" onclick="addItem('Água', 1.00, 'agua');"><img src="img/agua.png"; style="position: absolute; width: 20%; top:75%"></a></li>
+                    <li><a href="#" onclick="addItem('Água com gás', 1.20,'aguaComGas');"><img src="img/aguacomgas.png"; style="position: absolute; width: 20%; top:45%; left: 72%"></a></li>
+                    <li><a href="#" onclick="addItem('Coca-Cola', 1.50,'cocaCola');"><img src="img/cocacola.png"; style="position: absolute; width: 20%; top:45%; left: 50%"></a></li>
+                    <li><a href="#" onclick="addItem('Groselha', 1.50, 'groselha');"><img src="img/groselha.png"; style="position: absolute; width: 20%; top:45%; left: 28%"></a></li>
+                    <li><a href="#" onclick="addItem('Limonada', 1.50,'limonada');"><img src="img/limonada.png"; style="position: absolute; width: 20%; top:45%"></a></li>
+                    <li><a href="#" onclick="addItem('SevenUp', 1.50,'sevenUp');"><img src="img/sevenup.png"; style="position: absolute; width: 20%; top:15%; left: 72%"></a></li>
+                    <li><a href="#" onclick="addItem('Sumo de Laranja', 1.50,'sumodeLaranja');"><img src="img/sumodelaranja.png"; style="position: absolute; width: 20%; top:15%; left: 50%"></a></li>
+                    <li><a href="#" onclick="addItem('RedBull', 2.00,'redBull');"><img src="img/redbull.png"; style="position: absolute; width: 20%; top:15%; left: 28%"></a></li>
+                    <li><a href="#" onclick="addItem('Monster', 3.00,'monster');"><img src="img/monster.png"; style="position: absolute; width: 20%; top:15%"></a></li>
+                </ul>
+                 <div id ="aguaclasspi" style="position:absolute; top: 98.5%; left:9%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div id="aguaComGasclasspi" style="position:absolute; top: 68.5%; left: 75%" class="rateit" data-rateit-value="5" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "cafeclasspi" style="position:absolute; top: 98.5%; left: 53%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "cocaColaclasspi" style="position:absolute; top: 68.5%; left: 53%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "descafeinadoclasspi" style="position:absolute; top: 98.5%; left: 31%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "groselhaclasspi" style="position:absolute; top: 68.5%; left: 31%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "limonadaclasspi" style="position:absolute; top: 68.5%; left: 9%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "monsterclasspi" style="position:absolute; top: 38.5%; left: 9%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "redBullclasspi" style="position:absolute; top: 38.5%; left: 31%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "sevenUpclasspi" style="position:absolute; top: 38.5%; left: 75%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "sumodeLaranjaclasspi" style="position:absolute; top: 38.5%; left: 53%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+            </div>
+            <!------------ Fim div Água/Café/Sumos Preço inverso--------------->
+            
+            <!------------ Inicio div Bebidas Espirituosas ------->
+            <div id="bebidasEspirituosas">
+                
+                <button id="azEspirituosas" class="az" style="background: #00CC00;">A-Z</button>
+                <button id="azEspirituosasDecres" class="azInv" onclick="showDiv('#bebidasEspirituosasAzInv')">Z-A</button>
+                <button id="moneyEspirituosas" class="money" onclick="showDiv('#bebidasEspirituosasPreco')">Menor Preço</button>
+                <button id="moneyEspirituosasDecres" class="moneyInv" onclick="showDiv('#bebidasEspirituosasPrecoInv')">Maior Preço</button>
+                
+                <h3>Consumir > Bebidas Espirituosas</h3>
+                <ul class="products">
+                    <li><a href="#" onclick="addItem('Bacardi', 3.50,'bacardi');"><img src="img/bacardi.png"; style="position: absolute; width: 20%; top:15%"></a></li>
+                    <li><a href="#" onclick="addItem('Caipiblack', 4.00, 'caipiblack');"><img src="img/caipiblack.png"; style="position: absolute; width: 20%; top:15%; left: 28%"></a></li>
+                    <li><a href="#" onclick="addItem('Caipirinha', 4.00,'caipirinha');"><img src="img/caipirinha.png"; style="position: absolute; width: 20%; top:15%; left: 50%"></a></li>
+                    <li><a href="#" onclick="addItem('Caipiroska', 4.00, 'caipiroska');"><img src="img/caipiroska.png"; style="position: absolute; width: 20%; top:15%; left: 72%"></a><li>
+                    <li><a href="#" onclick="addItem('Gin Beefeater', 5.00,'ginBeefeater');"><img src="img/ginbeefeater.png"; style="position: absolute; width: 20%; top:45%"></a></li>
+                    <li><a href="#" onclick="addItem('Gin Big Boss', 8.00, 'ginBigBoss');"><img src="img/ginbigboss.png"; style="position: absolute; width: 20%; top:45%; left: 28%"></a></li>
+                    <li><a href="#" onclick="addItem('Gin Bulldog', 8.00,'ginBulldog');"><img src="img/ginbulldog.png"; style="position: absolute; width: 20%; top:45%; left: 50%"></a></li>
+                    <li><a href="#" onclick="addItem('Gin Gordon', 5.00,'gingordons');"><img src="img/gingordons.png"; style="position: absolute; width: 20%; top:45%; left: 72%"></a></li>
+                     <li><a href="#" onclick="addItem('Gin Tanqueray', 5.00,'ginTanqueray');"><img src="img/gintanqueray.png"; style="position: absolute; width: 20%; top:75%"></a></li>
+                    <li><a href="#" onclick="addItem('Licor Beirão', 2.50,'licorBeirao');"><img src="img/licorbeirao.png"; style="position: absolute; width: 20%; top:75%; left: 28%"></a></li>
+                    <li><a href="#" onclick="addItem('Martini', 2.00,'martini');"><img src="img/martini.png"; style="position: absolute; width: 20%; top:75%; left: 50%"></a></li>
+                    <li><a href="#" onclick="addItem('Mojito', 4.00,'mojito');"><img src="img/mojito.png"; style="position: absolute; width: 20%; top:75%; left: 72%"></a></li>
+                    <li><a href="#" onclick="addItem('Moscatel', 8.00,'moscatel');"><img src="img/moscatel.png"; style="position: absolute; width: 20%; top:105%"></a></li> 
+                    <li><a href="#" onclick="addItem('Piña Colada', 2.00,'pinaColada');"><img src="img/pinacolada.png"; style="position: absolute; width: 20%; top:105%; left:28%"></a></li>
+                    <li><a href="#" onclick="addItem('Vodka Black', 3.00, 'vodkaBlack');"><img src="img/vodkablack.png"; style="position: absolute; width: 20%; top:105%; left:50%"></a><li>
+                    <li><a href="#" onclick="addItem('Vodka Red', 3.00, 'vodkaRed');"><img src="img/vodkared.png"; style="position: absolute; width: 20%; top:105%; left:72%"></a><li>
+                    <li><a href="#" onclick="addItem('Vodka Simples', 3.00, 'vodkabranca');"><img src="img/vodkabranca.png"; style="position: absolute; width: 20%; top:135%"></a><li>
+                    <li><a href="#" onclick="addItem('Tequila', 3.50,'tequila');"><img src="img/tequila.png"; style="position: absolute; width: 20%; top:135%; left:28%"></a></li>
+                    </ul>
+                    
+                <div  id= "bacardiclass" style="position:absolute; top: 38%; left: 9%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "caipiblackclass" style="position:absolute; top: 38%; left: 31%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "caipirinhaclass" style="position:absolute; top: 38%; left: 53%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "caipiroskaclass" style="position:absolute; top: 38%; left: 75%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "ginBeefeaterclass" style="position:absolute; top: 68%; left: 9%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "ginBigBossclass" style="position:absolute; top: 68%; left: 31%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "ginBulldogclass" style="position:absolute; top: 68%; left: 53%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "gingordonsclass" style="position:absolute; top: 68%; left: 75%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "ginTanquerayclass" style="position:absolute; top: 98%; left: 9%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "licorBeiraoclass" style="position:absolute; top: 98%; left: 31%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "martiniclass" style="position:absolute; top: 98%; left: 53%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "mojitoclass" style="position:absolute; top: 98%; left: 75%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "moscatelclass" style="position:absolute; top: 128%; left: 9%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "pinaColadaclass" style="position:absolute; top: 128%; left: 31%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "vodkaBlackclass" style="position:absolute; top: 128%; left: 53%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "vodkaRedclass" style="position:absolute; top: 128%; left: 75%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "vodkabrancaclass" style="position:absolute; top: 158%; left: 9%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "tequilaclass" style="position:absolute; top: 158%; left: 31%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+            </div>
+            <!------------ Fim div Bebidas Espirituosas --------------->
+            
+            <!------------ Inicio div Bebidas Espirituosas Z-A------->
+            <div id="bebidasEspirituosasAzInv">
+                <h3>Consumir > Bebidas Espirituosas</h3>
+                
+                <button id="azEspirituosas" class="az" onclick="showDiv('#bebidasEspirituosas')">A-Z</button>
+                <button id="azEspirituosasDecres" class="azInv" style="background: #00CC00;">Z-A</button>
+                <button id="moneyEspirituosas" class="money" onclick="showDiv('#bebidasEspirituosasPreco')">Menor Preço</button>
+                <button id="moneyEspirituosasDecres" class="moneyInv" onclick="showDiv('#bebidasEspirituosasPrecoInv')">Maior Preço</button>
+                
+                <ul class="products">
+                    <li><a href="#" onclick="addItem('Bacardi', 3.50,'bacardi');"><img src="img/bacardi.png"; style="position: absolute; width: 20%; top:135%; left:28%"></a></li>
+                    <li><a href="#" onclick="addItem('Caipiblack', 4.00, 'caipiblack');"><img src="img/caipiblack.png"; style="position: absolute; width: 20%; top:135%"></a></li>
+                    <li><a href="#" onclick="addItem('Caipirinha', 4.00,'caipirinha');"><img src="img/caipirinha.png"; style="position: absolute; width: 20%; top:105%; left: 72%"></a></li>
+                    <li><a href="#" onclick="addItem('Caipiroska', 4.00, 'caipiroska');"><img src="img/caipiroska.png"; style="position: absolute; width: 20%; top:105%; left:50%"></a></li>
+                    <li><a href="#" onclick="addItem('Gin Beefeater', 5.00,'ginBeefeater');"><img src="img/ginbeefeater.png"; style="position: absolute; width: 20%; top:105%; left:28%"></a></li>
+                    <li><a href="#" onclick="addItem('Gin Big Boss', 8.00, 'ginBigBoss');"><img src="img/ginbigboss.png"; style="position: absolute; width: 20%; top:105%"></a></li>
+                    <li><a href="#" onclick="addItem('Gin Bulldog', 8.00,'ginBulldog');"><img src="img/ginbulldog.png"; style="position: absolute; width: 20%; top:75%; left: 72%"></a></li>
+                    <li><a href="#" onclick="addItem('Gin Gordon', 5.00,'gingordons');"><img src="img/gingordons.png"; style="position: absolute; width: 20%; top:75%; left:50%"></a></li>
+                     <li><a href="#" onclick="addItem('Gin Tanqueray', 5.00,'ginTanqueray');"><img src="img/gintanqueray.png"; style="position: absolute; width: 20%; top:75%; left:28%"></a></li>
+                    <li><a href="#" onclick="addItem('Licor Beirão', 2.50,'licorBeirao');"><img src="img/licorbeirao.png"; style="position: absolute; width: 20%; top:75%"></a></li>
+                    <li><a href="#" onclick="addItem('Martini', 2.00,'martini');"><img src="img/martini.png"; style="position: absolute; width: 20%; top:45%; left: 72%"></a></li>
+                    <li><a href="#" onclick="addItem('Mojito', 4.00,'mojito');"><img src="img/mojito.png"; style="position: absolute; width: 20%; top:45%; left: 50%"></a></li>
+                    <li><a href="#" onclick="addItem('Moscatel', 8.00,'moscatel');"><img src="img/moscatel.png"; style="position: absolute; width: 20%; top:45%; left:28%"></a></li> 
+                    <li><a href="#" onclick="addItem('Piña Colada', 2.00,'pinaColada');"><img src="img/pinacolada.png"; style="position: absolute; width: 20%; top:45%"></a></li>
+                    <li><a href="#" onclick="addItem('Vodka Black', 3.00, 'vodkaBlack');"><img src="img/vodkablack.png"; style="position: absolute; width: 20%; top:15%; left: 72%"></a></li>
+                    <li><a href="#" onclick="addItem('Vodka Red', 3.00, 'vodkaRed');"><img src="img/vodkared.png"; style="position: absolute; width: 20%; top:15%; left:50%"></a></li>
+                    <li><a href="#" onclick="addItem('Vodka Simples', 3.00, 'vodkabranca');"><img src="img/vodkabranca.png"; style="position: absolute; width: 20%; top:15%; left:28%"></a></li>
+                    <li><a href="#" onclick="addItem('Tequila', 3.50,'tequila');"><img src="img/tequila.png"; style="position: absolute; width: 20%; top:15%"></a></li>
+                </ul>
+                <div  id= "bacardiclassz" style="position:absolute; top: 158%; left: 31%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "caipiblackclassz" style="position:absolute; top: 158%; left: 9%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "caipirinhaclassz" style="position:absolute; top: 128%; left: 75%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "caipiroskaclassz" style="position:absolute; top: 128%; left: 53%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "ginBeefeaterclassz" style="position:absolute; top: 128%; left: 31%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "ginBigBossclassz" style="position:absolute; top: 128%; left: 9%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "ginbulldogclassz" style="position:absolute; top: 98%; left: 75%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "gingordonsclassz" style="position:absolute; top: 98%; left: 53%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "ginTanquerayclassz" style="position:absolute; top: 98%; left: 31%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "licorBeiraoclassz" style="position:absolute; top: 98%; left: 9%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "martiniclassz" style="position:absolute; top: 68%; left: 75%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "mojitoclassz" style="position:absolute; top: 68%; left: 53%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "moscatelclassz" style="position:absolute; top: 68%; left: 31%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "pinaColadaclassz" style="position:absolute; top: 68%; left: 9%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "vodkaBlackclassz" style="position:absolute; top: 38%; left: 75%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "vodkaRedclassz" style="position:absolute; top: 38%; left: 53%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "vodkabrancaclassz" style="position:absolute; top: 38%; left: 31%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "tequilaclassz" style="position:absolute; top: 38%; left: 9%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+            </div>
+            <!------------ Fim div Bebidas Espirituosas Z-A--------------->
+            
+            <!------------ Inicio div Bebidas Espirituosas Preço ------->
+            <div id="bebidasEspirituosasPreco">
+                <h3>Consumir > Bebidas Espirituosas</h3>
+                
+                <button id="azEspirituosas" class="az" onclick="showDiv('#bebidasEspirituosas')">A-Z</button>
+                <button id="azEspirituosasDecres" class="azInv" onclick="showDiv('#bebidasEspirituosasAzInv')">Z-A</button>
+                <button id="moneyEspirituosas" class="money" style="background: #00CC00;">Menor Preço</button>
+                <button id="moneyEspirituosasDecres" class="moneyInv" onclick="showDiv('#bebidasEspirituosasPrecoInv')">Maior Preço</button>
+                
+                <ul class="products">
+                    <li><a href="#" onclick="addItem('Bacardi', 3.50,'bacardi');"><img src="img/bacardi.png"; style="position: absolute; width: 20%; top:45%; left: 50%"></a></li>
+                    <li><a href="#" onclick="addItem('Caipiblack', 4.00, 'caipiblack');"><img src="img/caipiblack.png"; style="position: absolute; width: 20%; top:75%; left:28%"></a></li>
+                    <li><a href="#" onclick="addItem('Caipirinha', 4.00,'caipirinha');"><img src="img/caipirinha.png"; style="position: absolute; width: 20%; top:75%"></a></li>
+                    <li><a href="#" onclick="addItem('Caipiroska', 4.00, 'caipiroska');"><img src="img/caipiroska.png"; style="position: absolute; width: 20%; top:75%; left:50%"></a></li>
+                    <li><a href="#" onclick="addItem('Gin Beefeater', 5.00,'ginBeefeater');"><img src="img/ginbeefeater.png"; style="position: absolute; width: 20%; top:105%"></a></li>
+                    <li><a href="#" onclick="addItem('Gin Big Boss', 8.00, 'ginBigBoss');"><img src="img/ginbigboss.png"; style="position: absolute; width: 20%; top:135%"></a></li>
+                    <li><a href="#" onclick="addItem('Gin Bulldog', 8.00,'ginBulldog');"><img src="img/ginbulldog.png"; style="position: absolute; width: 20%; top:135%; left:28%"></a></li>
+                    <li><a href="#" onclick="addItem('Gin Gordon', 5.00,'gingordons');"><img src="img/gingordons.png"; style="position: absolute; width: 20%; top:105%; left:28%"></a></li>
+                     <li><a href="#" onclick="addItem('Gin Tanqueray', 5.00,'ginTanqueray');"><img src="img/gintanqueray.png"; style="position: absolute; width: 20%; top:105%; left:50%"></a></li>
+                    <li><a href="#" onclick="addItem('Licor Beirão', 2.50,'licorBeirao');"><img src="img/licorbeirao.png"; style="position: absolute; width: 20%; top:15%; left: 50%"></a></li>
+                    <li><a href="#" onclick="addItem('Martini', 2.00,'martini');"><img src="img/martini.png"; style="position: absolute; width: 20%; top:15%"></a></li>
+                    <li><a href="#" onclick="addItem('Mojito', 4.00,'mojito');"><img src="img/mojito.png"; style="position: absolute; width: 20%; top:75%; left: 72%"></a></li>
+                    <li><a href="#" onclick="addItem('Moscatel', 8.00,'moscatel');"><img src="img/moscatel.png"; style="position: absolute; width: 20%; top:105%; left:72%"></a></li> 
+                    <li><a href="#" onclick="addItem('Piña Colada', 2.00,'pinaColada');"><img src="img/pinacolada.png"; style="position: absolute; width: 20%; top:15%; left:28%"></a></li>
+                    <li><a href="#" onclick="addItem('Vodka Black', 3.00, 'vodkaBlack');"><img src="img/vodkablack.png"; style="position: absolute; width: 20%; top:15%; left:72%"></a><li>
+                    <li><a href="#" onclick="addItem('Vodka Red', 3.00, 'vodkaRed');"><img src="img/vodkared.png"; style="position: absolute; width: 20%; top:45%"></a><li>
+                    <li><a href="#" onclick="addItem('Vodka Simples', 3.00, 'vodkabranca');"><img src="img/vodkabranca.png"; style="position: absolute; width: 20%; top:45%; left: 28%"></a><li>
+                    <li><a href="#" onclick="addItem('Tequila', 3.50,'tequila');"><img src="img/tequila.png"; style="position: absolute; width: 20%; top:45%; left:72%"></a></li>
+                </ul>
+                <div  id= "bacardiclassp" style="position:absolute; top: 68%; left: 53%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "caipiblackclassp" style="position:absolute; top: 98%; left: 31%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                 <div  id= "caipirinhaclassp" style="position:absolute; top: 98%; left: 9%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "caipiroskaclassp" style="position:absolute; top: 98%; left: 53%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "ginBeefeaterclassp" style="position:absolute; top: 128%; left: 9%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "ginBigBossclassp" style="position:absolute; top: 158%; left: 9%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "ginBulldogclassp" style="position:absolute; top: 158%; left: 31%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "gingordonsclassp" style="position:absolute; top: 128%; left: 31%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "ginTanquerayclassp" style="position:absolute; top: 128%; left: 53%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "licorBeiraoclassp" style="position:absolute; top: 38%; left: 53%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "martiniclassp" style="position:absolute; top: 38%; left: 9%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "mojitoclassp" style="position:absolute; top: 98%; left: 75%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "moscatelclassp" style="position:absolute; top: 128%; left: 75%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "pinaColadaclassp" style="position:absolute; top: 38%; left: 31%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "vodkaBlackclassp" style="position:absolute; top: 38%; left: 75%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "vodkaRedclassp" style="position:absolute; top: 68%; left: 9%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "vodkabrancaclassp" style="position:absolute; top: 68%; left: 31%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "tequilaclassp" style="position:absolute; top: 68%; left: 75%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+            </div>
+            <!------------ Fim div Bebidas Espirituosas Preço--------------->
+            
+            <!------------ Inicio div Bebidas Espirituosas Preço inverso------->
+            <div id="bebidasEspirituosasPrecoInv">
+                <h3>Consumir > Bebidas Espirituosas</h3>
+                
+                <button id="azEspirituosas" class="az" onclick="showDiv('#bebidasEspirituosas')">A-Z</button>
+                <button id="azEspirituosasDecres" class="azInv" onclick="showDiv('#bebidasEspirituosasAzInv')">Z-A</button>
+                <button id="moneyEspirituosas" class="money" onclick="showDiv('#bebidasEspirituosasPreco')">Menor Preço</button>
+                <button id="moneyEspirituosasDecres" class="moneyInv" style="background: #00CC00;">Maior Preço</button>
+                
+                <ul class="products">
+                    <li><a href="#" onclick="addItem('Martini', 2.00,'martini');"><img src="img/martini.png"; style="position: absolute; width: 20%; top:135%; left:28%"></a></li>
+                    <li><a href="#" onclick="addItem('Piña Colada', 2.00,'pinaColada');"><img src="img/pinacolada.png"; style="position: absolute; width: 20%; top:135%"></a></li>
+                    <li><a href="#" onclick="addItem('Licor Beirão', 2.50,'licorBeirao');"><img src="img/licorbeirao.png"; style="position: absolute; width: 20%; top:105%; left: 72%"></a></li>
+                    <li><a href="#" onclick="addItem('Vodka Black', 3.00, 'vodkaBlack');"><img src="img/vodkablack.png"; style="position: absolute; width: 20%; top:105%; left:50%"></a></li>
+                    <li><a href="#" onclick="addItem('Vodka Red', 3.00, 'vodkaRed');"><img src="img/vodkared.png"; style="position: absolute; width: 20%; top:105%; left:28%"></a></li>
+                    <li><a href="#" onclick="addItem('Vodka Simples', 3.00, 'vodkabranca');"><img src="img/vodkabranca.png"; style="position: absolute; width: 20%; top:105%"></a></li>
+                    <li><a href="#" onclick="addItem('Bacardi', 3.50,'bacardi');"><img src="img/bacardi.png"; style="position: absolute; width: 20%; top:75%; left: 72%"></a></li>
+                    <li><a href="#" onclick="addItem('Tequila', 3.50,'tequila');"><img src="img/tequila.png"; style="position: absolute; width: 20%; top:75%; left:50%"></a></li>
+                    <li><a href="#" onclick="addItem('Caipiblack', 4.00, 'caipiblack');"><img src="img/caipiblack.png"; style="position: absolute; width: 20%; top:75%; left:28%"></a></li>
+                    <li><a href="#" onclick="addItem('Caipirinha', 4.00,'caipirinha');"><img src="img/caipirinha.png"; style="position: absolute; width: 20%; top:75%"></a></li>
+                    <li><a href="#" onclick="addItem('Caipiroska', 4.00, 'caipiroska');"><img src="img/caipiroska.png"; style="position: absolute; width: 20%; top:45%; left:72%"></a></li>
+                    <li><a href="#" onclick="addItem('Mojito', 4.00,'mojito');"><img src="img/mojito.png"; style="position: absolute; width: 20%; top:45%; left: 50%"></a></li>
+                    <li><a href="#" onclick="addItem('Gin Beefeater', 5.00,'ginBeefeater');"><img src="img/ginbeefeater.png"; style="position: absolute; width: 20%; top:45%; left:28%"></a></li>
+                    <li><a href="#" onclick="addItem('Gin Gordon', 5.00,'gingordons');"><img src="img/gingordons.png"; style="position: absolute; width: 20%; top:45%"></a></li>
+                    <li><a href="#" onclick="addItem('Gin Tanqueray', 5.00,'ginTanqueray');"><img src="img/gintanqueray.png"; style="position: absolute; width: 20%; top:15%; left:72%"></a></li>
+                    <li><a href="#" onclick="addItem('Moscatel', 8.00,'moscatel');"><img src="img/moscatel.png"; style="position: absolute; width: 20%; top:15%; left:50%"></a></li>
+                    <li><a href="#" onclick="addItem('Gin Big Boss', 8.00, 'ginBigBoss');"><img src="img/ginbigboss.png"; style="position: absolute; width: 20%; top:15%; left:28%"></a></li>
+                    <li><a href="#" onclick="addItem('Gin Bulldog', 8.00,'ginBulldog');"><img src="img/ginbulldog.png"; style="position: absolute; width: 20%; top:15%"></a></li>                  
+                </ul>
+                <div  id= "bacardiclasspi" style="position:absolute; top: 98%; left: 75%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "caipiblackclasspi" style="position:absolute; top: 98%; left: 31%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "caipirinhaclasspi" style="position:absolute; top: 98%; left: 9%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "caipiroskaclasspi" style="position:absolute; top: 68%; left: 75%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "ginBeefeaterclasspi" style="position:absolute; top: 68%; left: 31%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "ginBigBossclasspi" style="position:absolute; top: 38%; left: 31%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "ginBulldogclasspi" style="position:absolute; top: 38%; left: 9%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "gingordonsclasspi" style="position:absolute; top: 68%; left: 9%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "ginTanquerayclasspi" style="position:absolute; top: 38%; left: 75%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "licorBeiraoclasspi" style="position:absolute; top: 128%; left: 75%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "martiniclasspi" style="position:absolute; top: 158%; left: 31%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "mojitoclasspi" style="position:absolute; top: 68%; left: 53%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "moscatelclasspi" style="position:absolute; top: 38%; left: 53%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "pinaColadaclasspi" style="position:absolute; top: 158%; left: 9%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "vodkaBlackclasspi" style="position:absolute; top: 128%; left: 53%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "vodkaRedclasspi" style="position:absolute; top: 128%; left: 31%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "vodkabrancaclasspi" style="position:absolute; top: 128%; left: 9%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "tequilaclasspi" style="position:absolute; top: 98%; left: 53%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+            </div>
+            <!------------ Fim div Bebidas Espirituosas Preço inverso--------------->
+            
+            
+            <!------------ Inicio div Cerveja/Sangria ---------------->
+            <div id="cervejaSangria">
+                <h3>Consumir > Cerveja / Sangria </h3>
+                
+                <button id="azCerveja" class="az" style="background: #00CC00;">A-Z</button>
+                <button id="azCervejaDecres" class="azInv" onclick="showDiv('#cervejaSangriaAzInv')">Z-A</button>
+                <button id="moneyCerveja" class="money" onclick="showDiv('#cervejaSangriaPreco')">Menor Preço</button>
+                <button id="moneyCervejaDecres" class="moneyInv" onclick="showDiv('#cervejaSangriaPrecoInv')">Maior Preço</button>
+                
+                <ul class="products">
+                    <li><a href="#" onclick="addItem('Corona', 3.00,'corona');"><img src="img/corona.png"; style="position: absolute; width: 20%; top:15%"></a></li>
+                    <li><a href="#" onclick="addItem('Imperial Sagres', 1.00, 'imperialSagres');"><img src="img/imperialsagres.png"; style="position: absolute; width: 20%; top:15%; left: 28%"></a><li>
+                    <li><a href="#" onclick="addItem('Sagres 0.20', 1.00,'sagres20');"><img src="img/sagres20.png"; style="position: absolute; width: 20%; top:15%; left: 50%"></a></li>
+                    <li><a href="#" onclick="addItem('Sagres 0.33', 1.50,'sagres33');"><img src="img/sagres33.png"; style="position: absolute; width: 20%; top:15%; left: 72%"></a></li>
+                    <li><a href="#" onclick="addItem('Sagres Radler', 1.50,'sagresRadler');"><img src="img/sagresradler.png"; style="position: absolute; width: 20%; top:45%"></a></li>
+                    <li><a href="#" onclick="addItem('Sangria copo', 1.50,'sangriaCopo');"><img src="img/sangriacopo.png"; style="position: absolute; width: 20%; top:45%; left: 28%"></a></li>
+                    <li><a href="#" onclick="addItem('Sangria jarro', 6.00,'sangriaJarro');"><img src="img/sangriajarro.png"; style="position: absolute; width: 20%; top:45%; left: 50%"></a></li>
+                </ul>
+                
+                <div  id= "coronaclass" style="position:absolute; top: 38.5%; left: 9%" class="rateit" data-rateit-value="5" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "imperialSagresclass" style="position:absolute; top: 38.5%; left: 31%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "sagres20class" style="position:absolute; top: 38.5%; left: 53%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "sagres33class" style="position:absolute; top: 38.5%; left: 75%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "sagresRadlerclass" style="position:absolute; top: 68.5%; left: 9%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "sangriaCopoclass" style="position:absolute; top: 68.5%; left: 31%" class="rateit" data-rateit-value="5" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "sangriaJarroclass" style="position:absolute; top: 68.5%; left: 53%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+            </div>
+            <!------------ Fim div Cerveja/Sangria --------------->
+            
+            <!------------ Inicio div Cerveja/Sangria Z-A---------------->
+            <div id="cervejaSangriaAzInv">
+                <h3>Consumir > Cerveja / Sangria </h3>
+                
+                <button id="azCerveja" class="az" onclick="showDiv('#cervejaSangria')">A-Z</button>
+                <button id="azCervejaDecres" class="azInv" style="background: #00CC00;">Z-A</button>
+                <button id="moneyCerveja" class="money" onclick="showDiv('#cervejaSangriaPreco')">Menor Preço</button>
+                <button id="moneyCervejaDecres" class="moneyInv" onclick="showDiv('#cervejaSangriaPrecoInv')">Maior Preço</button>
+                
+                <ul class="products">
+                    <li><a href="#" onclick="addItem('Corona', 3.00,'corona');"><img src="img/corona.png"; style="position: absolute; width: 20%; top:45%; left: 50%"></a></li>
+                    <li><a href="#" onclick="addItem('Imperial Sagres', 1.00, 'imperialSagres');"><img src="img/imperialsagres.png"; style="position: absolute; width: 20%; top:45%; left: 28%"></a></li>
+                    <li><a href="#" onclick="addItem('Sagres 0.20', 1.00,'sagres20');"><img src="img/sagres20.png"; style="position: absolute; width: 20%; top:45%"></a></li>
+                    <li><a href="#" onclick="addItem('Sagres 0.33', 1.50,'sagres33');"><img src="img/sagres33.png"; style="position: absolute; width: 20%; top:15%; left: 72%"></a></li>
+                    <li><a href="#" onclick="addItem('Sagres Radler', 1.50,'sagresRadler');"><img src="img/sagresradler.png"; style="position: absolute; width: 20%; top:15%; left: 50%"></a></li>
+                    <li><a href="#" onclick="addItem('Sangria copo', 1.50,'sangriaCopo');"><img src="img/sangriacopo.png"; style="position: absolute; width: 20%; top:15%; left: 28%"></a></li>
+                    <li><a href="#" onclick="addItem('Sangria jarro', 6.00,'sangriaJarro');"><img src="img/sangriajarro.png"; style="position: absolute; width: 20%; top:15%"></a></li>
+                </ul>
+                <div  id= "coronaclassz" style="position:absolute; top: 68.5%; left: 53%" class="rateit" data-rateit-value="5" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "imperialSagresclassz" style="position:absolute; top: 68.5%; left: 31%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "sagres20classz" style="position:absolute; top: 68.5%; left: 9%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "sagres33classz" style="position:absolute; top: 38.5%; left: 75%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "sagresRadlerclassz" style="position:absolute; top: 38.5%; left: 53%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "sangriaCopoclassz" style="position:absolute; top: 38.5%; left: 31%" class="rateit" data-rateit-value="5" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "sangriaJarroclassz" style="position:absolute; top: 38.5%; left: 9%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+            </div>
+            <!------------ Fim div Cerveja/Sangria Z-A--------------->
+            
+            <!------------ Inicio div Cerveja/Sangria Preço---------------->
+            <div id="cervejaSangriaPreco">
+                <h3>Consumir > Cerveja / Sangria </h3>
+                
+                <button id="azCerveja" class="az" onclick="showDiv('#cervejaSangria')">A-Z</button>
+                <button id="azCervejaDecres" class="azInv" onclick="showDiv('#cervejaSangriaAzInv')">Z-A</button>
+                <button id="moneyCerveja" class="money" style="background: #00CC00;">Menor Preço</button>
+                <button id="moneyCervejaDecres" class="moneyInv" onclick="showDiv('#cervejaSangriaPrecoInv')">Maior Preço</button>
+                
+                <ul class="products">
+                    <li><a href="#" onclick="addItem('Imperial Sagres', 1.00, 'imperialSagres');"><img src="img/imperialsagres.png"; style="position: absolute; width: 20%; top:15%"></a><li>
+                    <li><a href="#" onclick="addItem('Sagres 0.20', 1.00,'sagres20');"><img src="img/sagres20.png"; style="position: absolute; width: 20%; top:15%; left: 28%"></a></li>
+                    <li><a href="#" onclick="addItem('Sagres 0.33', 1.50,'sagres33');"><img src="img/sagres33.png"; style="position: absolute; width: 20%; top:15%; left: 50%"></a></li>
+                    <li><a href="#" onclick="addItem('Sagres Radler', 1.50,'sagresRadler');"><img src="img/sagresradler.png"; style="position: absolute; width: 20%; top:15%; left: 72%"></a></li>
+                    <li><a href="#" onclick="addItem('Sangria copo', 1.50,'sangriaCopo');"><img src="img/sangriacopo.png"; style="position: absolute; width: 20%; top:45%"></a></li>
+                    <li><a href="#" onclick="addItem('Corona', 3.00,'corona');"><img src="img/corona.png"; style="position: absolute; width: 20%; top:45%; left: 28%"></a></li>
+                    <li><a href="#" onclick="addItem('Sangria jarro', 6.00,'sangriaJarro');"><img src="img/sangriajarro.png"; style="position: absolute; width: 20%; top:45%; left: 50%"></a></li>
+                </ul>
+                
+                <div  id= "coronaclassp" style="position:absolute; top: 68.5%; left: 31%" class="rateit" data-rateit-value="5" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "imperialSagresclassp" style="position:absolute; top: 38.5%; left: 9%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "sagres20classp" style="position:absolute; top: 38.5%; left: 31%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "sagres33classp" style="position:absolute; top: 38.5%; left: 53%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "sagresRadlerclassp" style="position:absolute; top: 38.5%; left: 75%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "sangriaCopoclassp" style="position:absolute; top: 68.5%; left: 9%" class="rateit" data-rateit-value="5" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "sangriaJarroclassp" style="position:absolute; top: 68.5%; left: 53%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+            </div>
+            <!------------ Fim div Cerveja/Sangria Preço--------------->
+            
+            <!------------ Inicio div Cerveja/Sangria Preço inverso---------------->
+            <div id="cervejaSangriaPrecoInv">
+                <h3>Consumir > Cerveja / Sangria </h3>
+                
+                <button id="azCerveja" class="az" onclick="showDiv('#cervejaSangria')">A-Z</button>
+                <button id="azCervejaDecres" class="azInv" onclick="showDiv('#cervejaSangriaAzInv')">Z-A</button>
+                <button id="moneyCerveja" class="money" onclick="showDiv('#cervejaSangriaPreco')">Menor Preço</button>
+                <button id="moneyCervejaDecres" class="moneyInv" style="background: #00CC00;">Maior Preço</button>
+                
+                <ul class="products">
+                    <li><a href="#" onclick="addItem('Imperial Sagres', 1.00, 'imperialSagres');"><img src="img/imperialsagres.png"; style="position: absolute; width: 20%; top:45%; left: 50%"></a></li>
+                    <li><a href="#" onclick="addItem('Sagres 0.20', 1.00,'sagres20');"><img src="img/sagres20.png"; style="position: absolute; width: 20%; top:45%; left: 28%"></a></li>
+                    <li><a href="#" onclick="addItem('Sagres 0.33', 1.50,'sagres33');"><img src="img/sagres33.png"; style="position: absolute; width: 20%; top:45%"></a></li>
+                    <li><a href="#" onclick="addItem('Sagres Radler', 1.50,'sagresRadler');"><img src="img/sagresradler.png"; style="position: absolute; width: 20%; top:15%; left: 72%"></a></li>
+                    <li><a href="#" onclick="addItem('Sangria copo', 1.50,'sangriaCopo');"><img src="img/sangriacopo.png"; style="position: absolute; width: 20%; top:15%; left: 50%"></a></li>
+                    <li><a href="#" onclick="addItem('Corona', 3.00,'corona');"><img src="img/corona.png"; style="position: absolute; width: 20%; top:15%; left: 28%"></a></li>
+                    <li><a href="#" onclick="addItem('Sangria jarro', 6.00,'sangriaJarro');"><img src="img/sangriajarro.png"; style="position: absolute; width: 20%; top:15%"></a></li>
+                </ul>
+                <div  id= "coronaclasspi" style="position:absolute; top: 38.5%; left: 31%" class="rateit" data-rateit-value="5" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "imperialsagresclasspi" style="position:absolute; top: 68.5%; left: 53%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "sagres20classpi" style="position:absolute; top: 68.5%; left: 31%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "sagres33classpi" style="position:absolute; top: 68.5%; left: 9%" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "sagresRadlerclasspi" style="position:absolute; top: 38.5%; left: 75%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "sangriaCopoclasspi" style="position:absolute; top: 38.5%; left: 53%" class="rateit" data-rateit-value="5" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <div  id= "sangriaJarroclasspi" style="position:absolute; top: 38.5%; left: 9%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+            </div>
+            <!------------ Fim div Cerveja/Sangria Preço inverso--------------->
+            
+            
+            <!------------ Inicio div Pedidos Efectuados --------------->
+            <div id="completedOrders">
+                <h1 style="font-family: Arial, monospace">Pedidos efectuados</h1>
+            </div>
+            <!------------ Fim div Pedidos Efectuados --------------->
+            
+            <!------------ Inicio div Comentarios do bar --------------->
+            
+            <div id="barComments">
+                <h3>Classificar/Sugerir > Bar </h3>
+                
+                
+                <h5 style="position: absolute; top: 8%; left:30%;">Diga-nos o que achou do ambiente do Bar.</h5>
+                <div id="commentBarClassi" style="position:absolute; top: 18%; left:43%;" class="rateit" data-rateit-step="1"></div>
+                <textarea id="userText" style="font-family: Arial, monospace" placeholder="Deixe-nos um comentário ou sugestão... (opcional!)" onclick="showKeyboard()"></textarea><br>
+                <button id="btn" onclick="showInfo('#confirmCommentPopup');">Enviar</button>
+                <div id="myDiv">
+                <br><br>    
+                <h1> Maria - 04/05/2016 
+                <div id="commentBarClassi" class="rateit" data-rateit-value="5" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div> 
+                </h1>
+                <p> Impecável, excelente atendimento e ambiente.</p><br>
+                    
+                <h1> Adriana - 04/05/2016 
+                <div id="commentBarClassi" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div> 
+                </h1>
+                <p> O espaço é fantástico, com um ambiente descontraído e bom música. Ideal para beber um copo com amigos. O único defeito que encontro é o atendimento que não é o mais simpático.. Se calhar tive a azar, e conto voltar para que contrariem esta ideia.</p><br>
+                
+                <h1> Pedro - 04/05/2016 
+                <div id="commentBarClassi"  class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div> 
+                </h1>
+                <p> Um dos meus sítios preferidos em Lisboa! Com uma vista fantástica sob a cidade e com um ambiente super agradável. Destaque para as caipirinhas e mojitos que são óptimos!!</p><br>
+                    
+                <h1>Rodolfo - 04/05/2016
+                <div id="commentBarClassi"  class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div> 
+                </h1>    
+                <p>  Óptimo! Mojitos maravilhosos! Serviço acessível, atencioso, ainda que, por vezes me pareça insuficiente, talvez pela afluência grande de clientes.</p><br>
+                    
+                <h1> Inês - 04/05/2016
+                <div id="commentBarClassi"  class="rateit" data-rateit-value="2" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>  
+                </h1>
+                <p>Não é de longe a primeira vez que visito o Barista e confesso que já fui mais entusiasta deste espaço. Sempre muito cheio, sem mesa para sentar, mesmo quando estamos de pé mal nos podemos mexer e a música está demasiado alta se queremos estar descontraidamente a aproveitar uma tarde com amigos.</p><br>
+                    
+                <h1> Francisca - 04/05/2016 
+                <div id="commentBarClassi"  class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>     
+                </h1>
+                <p>Bom bar com vista para o rio e a cidade. Em dias melhores os lugares sentados são curtos, mas não deixa de ser um óptimo local. Os hambúrgueres são saborosos. O serviço tende a sofrer um pouco com o aumento de clientes.</p><br>
+                
+                <h1> Hugo - 04/05/2016 
+                <div id="commentBarClassi"  class="rateit" data-rateit-value="5" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                </h1>
+                <p> Um espaço que já é incontornável da cidade de Lisboa. Infelizmente, ainda não conheço nada dos Petiscos, mas de certeza que estará para breve!</p><br>
+                    
+                <h1> Bernardo - 04/05/2016
+                <div id="commentBarClassi" class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>    
+                </h1>
+                <p> Bom sitio para beber um copo ao fim da tarde, com uma boa vista ( apesar de não ser das melhores) e um espaço engraçado. Contudo o atendimento é muito confuso e à noite não exite iluminaçao sendo complicado ver a carta ou mesmo perceber quem são os empregados.</p><br>
+                    
+                <h1> Beatriz - 04/05/2016
+                 <div id="commentBarClassi"  class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>     
+                </h1>
+                <p> Incrível. Uma vista extraordinária acompanhada por um ótimo serviço. A música, o ambiente, a simpatia dos funcionários e a própria decoração fazem dele, o meu bar de eleição.</p><br>
+                    
+                    
+                <h1> Alexandre - 03/05/2016
+                <div id="commentBarClassi"  class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div> 
+                </h1>
+                <p>Sítio acessível (de carro ou a pé) e a vista é de facto fantástica. Mas com a popularidade, tornou-se num local cheio de pessoas e com demasiado barulho. Vale a pena ir ver como é, mas não aconselho para visitar frequentemente, pois é complicado arranjar lugar.</p><br>
+                
+                <h1> Madalena - 03/05/2016
+                <div id="commentBarClassi"  class="rateit" data-rateit-value="2" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>     
+                </h1>
+                <p>Já teve melhores dias. Já tive quase meia duzia de vezes no park e a qualidade a diminuir. Espaço muito lotado, por vezes o chão muito porco e muito escuro. A estrangeirada que vem lá tb não ajuda. Como passou a ser um local muito conhecido passou a ser banal.</p><br>       
+                    
+                <h1> Miguel - 02/05/2016
+                <div id="commentBarClassi"  class="rateit" data-rateit-value="3" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>       
+                </h1>
+                <p>Bom spot! O ambiente é bom mas nao gostei do serviço. Voltarei brevemente para dar outra oportunidade.</p><br>
+                    
+                <h1> Bruno - 02/05/2016 
+                <div id="commentBarClassi"  class="rateit" data-rateit-value="1" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>    
+                </h1>
+                <p>Terrivel. Vista nada de especial. Parque caro. Pedi um Bulldog e serviram me um Gordons que teve que regressar ao seu ponto de partida. Empregados antipáticos. Ambiente pulvilhado de turistas. Terrível. Nao voltarei.</p><br>        
+                
+                <h1> Susana - 02/05/2016
+                <div id="commentBarClassi"  class="rateit" data-rateit-value="5" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>        
+                </h1><br>    
+                    
+            </div><br>
+            </div>
+            
+            <!------------ Fim div Comentarios do bar --------------->
+            
+            
+            <!------------ Inicio div classificaçao consumiveis --------------->
+            <div id="classiConsumiveis">
+                <h3>Classificar/Sugerir > Consumiveis </h3>
+                
+                <p id="classiConsumiveisInfo"> Ainda não consumiu nenhum produto. Apenas poderá classificar os produtos que consumir.
+                    Esta secção irá sendo actualizada à medida que for consumindo. Obrigado!</p>
+                
+            </div>
+            <!------------ Fim div classificaçao consumiveis --------------->
+            
+            <!------------ Inicio div top Classificações --------------->
+            <div id="topClassificacoes">
+                <h3>Classificar/Sugerir > Top de Classificações </h3>
+                
+                <h4> Consumiveis - top 10</h4>
+                
+                <img src="img/aguacomgas.png"; style="position: absolute; width: 20%; top:20%; left: 8%">
+                <div id="aguagasclass" style="position:absolute; top: 42.5%; left: 11%" class="rateit" data-rateit-value="5" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <img src="img/corona.png"; style="position: absolute; width: 20%; top:49.5%; left: 8%">
+                <div id="aguagasclass" style="position:absolute; top: 72%; left: 11%" class="rateit" data-rateit-value="5" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <img src="img/tostadefrango.png"; style="position: absolute; width: 20%; top:79%; left: 8%">
+                <div  id= "tostadefrangoclass" style="position:absolute; top: 101.5%; left: 11%" class="rateit" data-rateit-value="5" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <img src="img/sangriacopo.png"; style="position: absolute; width: 20%; top:108.5%; left: 8%">
+                <div  id= "sangriacopoclass" style="position:absolute; top: 131%; left: 11%" class="rateit" data-rateit-value="5" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <img src="img/bacardi.png"; style="position: absolute; width: 20%; top:137.5%; left: 8%">
+                <div  id= "bacardiclass" style="position:absolute; top: 160%; left: 11%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <img src="img/tostadeatum.png"; style="position: absolute; width: 20%; top:167%; left: 8%">
+                <div  id= "tostadeatumclass" style="position:absolute; top: 189.5%; left: 11%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <img src="img/amendoins.png"; style="position: absolute; width: 20%; top:196.5%; left: 8%">
+                <div  id= "amendoinsclass" style="position:absolute; top: 219%; left: 11%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <img src="img/tequila.png"; style="position: absolute; width: 20%; top:226%; left: 8%">
+                <div  id= "tequilaclass" style="position:absolute; top: 248.5%; left: 11%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <img src="img/moscatel.png"; style="position: absolute; width: 20%; top:255.5%; left: 8%">
+                <div  id= "moscatelclass" style="position:absolute; top: 278.3%; left: 11%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+                
+                <img src="img/sangriajarro.png"; style="position: absolute; width: 20%; top:285%; left: 8%">
+                <div  id= "sangriajarroclass" style="position:absolute; top: 307.8%; left: 11%" class="rateit" data-rateit-value="4" data-rateit-ispreset="true" data-rateit-readonly="true">
+                </div>
+            </div>
+            
+            <!------------ Fim div top Classificações --------------->
+            
+            <!--------divexperimental-------->
+            <div id="empregado">    
+                
+                <center><h2 style="position:absolute; left:3%; top: 15%">O empregado deslocar-se-á com maior brevidade à sua mesa. Obrigado.</h2></center>
+                <center><img src="img/waiter.jpg" style="position: absolute; width:40%; top:35% ; left:30%"></center>
+            </div>
+            <!--------divexperimental-------->
+        
+        </div>
+        
+        
+        
+        <div id="userMenu">
+            <button id="orders" type="button" style="color:white"><b><img src="img/list.png" style="position: absolute; left: 30%"> Pedidos</b></button>
+            <div id="orderContent">
+                
+                
+                <div> <h2 style="font-family: Arial, monospace; font-size: 120%; font-weight: normal">Pedido Atual:</h2>
+                    <div id="currentOrder"></div>
+                    
+                    <button id="cancel" type="button" style="font-family: Arial, monospace" onclick="showCancelConfirmation();"><img src="img/cancel.png" style="position: absolute; left: 8%">  Cancelar</button>
+                    <button id="confirm" type="button" style="font-family: Arial, monospace" onclick="showConfirmation();"><img src="img/confi.png" style="position: absolute; left: 8%">  Confirmar</button>
+                    
+                    <p id="orderTotal" style="font-family: Arial, monospace;">Total do pedido:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<var id="total" style="font-family: Arial, monospace; font-weight: normal">0.00€</var></p>
+                
+                    
+                    
+                </div>
+                
+                
+                <div id="accStatus"> 
+                    <p id="accTotal" style="font-family: Arial, monospace; font-size:100%">Total da conta:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<var id="accTotalV" style="font-family: Arial, monospace">0.00€</var></p>
+                    <button id ="completedOrdersBtn" class="accButtons" type="button" style="font-family: Arial, monospace" onclick="checkOrders();"><img src="img/list16.png" style="position: absolute; left: 8%; top:25%"> &nbsp;&nbsp;Pedidos &nbsp; &nbsp;&nbsp; &nbsp;&nbsp;Efectuados</button>
+                    <button id="payBtn" class="accButtons" style="font-family: Arial, monospace" type="button" onclick="showInfo('#paymentpopup');"><img src="img/money.png" style="position: absolute; left: 8%">  Pagar</button>
+                </div>
+            </div>
+        
+        </div>
+    
+    </div> 
+</body>
+</html>
